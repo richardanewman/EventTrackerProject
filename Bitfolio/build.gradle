@@ -4,7 +4,7 @@ plugins {
 	id 'java'
 }
 
-group = 'com.example'
+group = 'com.skilldistillery'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
@@ -13,7 +13,7 @@ repositories {
 }
 
 dependencies {
-	compile project(':JPAEventTracker')
+	compile project(':BitfolioJPA')
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	runtimeOnly 'mysql:mysql-connector-java'
