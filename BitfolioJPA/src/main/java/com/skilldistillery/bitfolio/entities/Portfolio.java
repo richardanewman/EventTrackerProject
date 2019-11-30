@@ -3,13 +3,14 @@ package com.skilldistillery.bitfolio.entities;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Portfolio {
@@ -18,7 +19,10 @@ public class Portfolio {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+	@Column(name="portfolio_name")
+	private String portfolioName;
+	
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	@JoinColumn(name= "user_profile_id")
 	private UserProfile user;
 	
@@ -32,6 +36,15 @@ public class Portfolio {
 	public void setId(int id) {
 		this.id = id;
 	}
+	
+	public String getPortfolioName() {
+		return portfolioName;
+	}
+
+	public void setPortfolioName(String portfolioName) {
+		this.portfolioName = portfolioName;
+	}
+	
 
 	public UserProfile getUser() {
 		return user;
@@ -49,9 +62,11 @@ public class Portfolio {
 		this.coins = coins;
 	}
 
-	public Portfolio(int id, UserProfile user, List<Coin> coins) {
+
+	public Portfolio(int id, String portfolioName, UserProfile user, List<Coin> coins) {
 		super();
 		this.id = id;
+		this.portfolioName = portfolioName;
 		this.user = user;
 		this.coins = coins;
 	}
@@ -65,6 +80,8 @@ public class Portfolio {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Portfolio [id=");
 		builder.append(id);
+		builder.append(", portfolioName=");
+		builder.append(portfolioName);
 		builder.append(", user=");
 		builder.append(user);
 		builder.append(", coins=");
@@ -79,6 +96,7 @@ public class Portfolio {
 		int result = 1;
 		result = prime * result + ((coins == null) ? 0 : coins.hashCode());
 		result = prime * result + id;
+		result = prime * result + ((portfolioName == null) ? 0 : portfolioName.hashCode());
 		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		return result;
 	}
@@ -98,6 +116,11 @@ public class Portfolio {
 		} else if (!coins.equals(other.coins))
 			return false;
 		if (id != other.id)
+			return false;
+		if (portfolioName == null) {
+			if (other.portfolioName != null)
+				return false;
+		} else if (!portfolioName.equals(other.portfolioName))
 			return false;
 		if (user == null) {
 			if (other.user != null)

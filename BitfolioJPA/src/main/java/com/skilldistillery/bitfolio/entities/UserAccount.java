@@ -29,9 +29,8 @@ public class UserAccount {
 	private String username;
 	
 	private String email;
-	
-	@Column(name="password")
-	private String saltedPassword;
+
+	private String password;
 	
 	@Column(name="password_salt")
 	private String salt;
@@ -85,12 +84,12 @@ public class UserAccount {
 		this.email = email;
 	}
 
-	public String getSaltedPassword() {
-		return saltedPassword;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setSaltedPassword(String saltedPassword) {
-		this.saltedPassword = saltedPassword;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getSalt() {
@@ -149,7 +148,7 @@ public class UserAccount {
 		this.active = active;
 	}
 
-	public UserAccount(int id, UserProfile user, String username, String email, String saltedPassword, String salt,
+	public UserAccount(int id, UserProfile user, String username, String email, String password, String salt,
 			String hashAlgo, String passToken, String passExpire, String emailToken, String registrationTime,
 			boolean active) {
 		super();
@@ -157,7 +156,7 @@ public class UserAccount {
 		this.user = user;
 		this.username = username;
 		this.email = email;
-		this.saltedPassword = saltedPassword;
+		this.password = password;
 		this.salt = salt;
 		this.hashAlgo = hashAlgo;
 		this.passToken = passToken;
@@ -182,9 +181,9 @@ public class UserAccount {
 		result = prime * result + id;
 		result = prime * result + ((passExpire == null) ? 0 : passExpire.hashCode());
 		result = prime * result + ((passToken == null) ? 0 : passToken.hashCode());
+		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((registrationTime == null) ? 0 : registrationTime.hashCode());
 		result = prime * result + ((salt == null) ? 0 : salt.hashCode());
-		result = prime * result + ((saltedPassword == null) ? 0 : saltedPassword.hashCode());
 		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
@@ -228,6 +227,11 @@ public class UserAccount {
 				return false;
 		} else if (!passToken.equals(other.passToken))
 			return false;
+		if (password == null) {
+			if (other.password != null)
+				return false;
+		} else if (!password.equals(other.password))
+			return false;
 		if (registrationTime == null) {
 			if (other.registrationTime != null)
 				return false;
@@ -237,11 +241,6 @@ public class UserAccount {
 			if (other.salt != null)
 				return false;
 		} else if (!salt.equals(other.salt))
-			return false;
-		if (saltedPassword == null) {
-			if (other.saltedPassword != null)
-				return false;
-		} else if (!saltedPassword.equals(other.saltedPassword))
 			return false;
 		if (user == null) {
 			if (other.user != null)
@@ -267,8 +266,8 @@ public class UserAccount {
 		builder.append(username);
 		builder.append(", email=");
 		builder.append(email);
-		builder.append(", saltedPassword=");
-		builder.append(saltedPassword);
+		builder.append(", password=");
+		builder.append(password);
 		builder.append(", salt=");
 		builder.append(salt);
 		builder.append(", hashAlgo=");

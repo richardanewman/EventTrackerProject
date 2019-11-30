@@ -14,10 +14,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class UserAccountTest {
+class CoinWatchListTest {
 	private static EntityManagerFactory emf;
 	private static EntityManager em;
-	private UserAccount UA;
+	private CoinWatchList watchList;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -32,48 +32,54 @@ class UserAccountTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		UA = em.find(UserAccount.class, 1);
+		watchList = em.find(CoinWatchList.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		UA = null;
+		watchList = null;
 	}
 
 	@Test
-	@DisplayName("Testing user account user name and id")
+	@DisplayName("Testing coin watch list get name")
 	void test1() {
-		assertNotNull(UA);
-		assertEquals("rick", UA.getUsername());
-		assertEquals(1, UA.getId());
+		assertNotNull(watchList);
+		assertEquals("Wish List", watchList.getWatchListName());
+		
 	}
 	@Test
-	@DisplayName("Testing user account get pass")
+	@DisplayName("Testing coin watch list alert low and high double and int")
 	void test2() {
-		assertNotNull(UA);
-		assertEquals("123", UA.getPassword());
+		assertNotNull(watchList);
+		assertEquals(125, watchList.getAlertLow());
+		assertEquals(200, watchList.getAlertHigh());
+		assertEquals(125.00, watchList.getAlertLow());
+		assertEquals(200.00, watchList.getAlertHigh());
 
 	}
 	@Test
-	@DisplayName("Testing user account get email")
+	@DisplayName("Testing coin watch list get coin name ")
 	void test3() {
-		assertNotNull(UA);
-		assertEquals("rick@richardnewman.dev", UA.getEmail());
+		assertNotNull(watchList);
+		assertEquals("ETH", watchList.getCoinName());
 		
 	}
+	
 	@Test
-	@DisplayName("Testing user account active")
+	@DisplayName("Testing coin watch list get trading pair")
 	void test4() {
-		assertNotNull(UA);
-		assertEquals(true, UA.isActive());
+		assertNotNull(watchList);
+		assertEquals("ETH/USD", watchList.getTradingPair());
 		
 	}
 	@Test
-	@DisplayName("Testing user account get UserProfile firstName")
+	@DisplayName("Testing coin watch list get user get first name")
 	void test5() {
-		assertNotNull(UA);
-		assertEquals("Richard", UA.getUser().getFirstName());
+		assertNotNull(watchList);
+		assertEquals("Richard", watchList.getUser().getFirstName());
 		
 	}
+	
+	
 }
