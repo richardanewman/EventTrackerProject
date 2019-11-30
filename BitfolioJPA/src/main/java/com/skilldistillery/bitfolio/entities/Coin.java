@@ -23,11 +23,11 @@ public class Coin {
 	
 	private String name;
 	
-	private String exchange;
-	
 	@Column(name="trading_pair")
 	private String tradingPair;
-
+	
+	private String exchange;
+	
 	@Column(name="purchase_date")
 	private Date purchaseDate;
 	

@@ -68,6 +68,7 @@ DROP TABLE IF EXISTS `portfolio` ;
 
 CREATE TABLE IF NOT EXISTS `portfolio` (
   `id` INT NOT NULL,
+  `portfolio_name` VARCHAR(45) NULL,
   `user_profile_id` INT NOT NULL,
   PRIMARY KEY (`id`, `user_profile_id`),
   INDEX `fk_portfolio_user_profile1_idx` (`user_profile_id` ASC),
@@ -102,6 +103,31 @@ CREATE TABLE IF NOT EXISTS `coin` (
   CONSTRAINT `fk_coin_portfolio1`
     FOREIGN KEY (`portfolio_id`)
     REFERENCES `portfolio` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `coin_watch_list`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `coin_watch_list` ;
+
+CREATE TABLE IF NOT EXISTS `coin_watch_list` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `watch_list_name` VARCHAR(45) NULL,
+  `user_profile_id` INT NOT NULL,
+  `logo_url` TEXT NULL,
+  `coin_name` VARCHAR(45) NULL,
+  `trading_pair` VARCHAR(45) NULL,
+  `exchange` VARCHAR(45) NULL,
+  `alert_low` DOUBLE NULL,
+  `alert_high` DOUBLE NULL,
+  PRIMARY KEY (`id`, `user_profile_id`),
+  INDEX `fk_watch_list_user_profile1_idx` (`user_profile_id` ASC),
+  CONSTRAINT `fk_watch_list_user_profile1`
+    FOREIGN KEY (`user_profile_id`)
+    REFERENCES `user_profile` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -142,7 +168,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `portfoliodb`;
-INSERT INTO `portfolio` (`id`, `user_profile_id`) VALUES (1, 1);
+INSERT INTO `portfolio` (`id`, `portfolio_name`, `user_profile_id`) VALUES (1, 'primary', 1);
 
 COMMIT;
 
@@ -152,7 +178,17 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `portfoliodb`;
-INSERT INTO `coin` (`id`, `logo`, `name`, `trading_pair`, `exchange`, `purchase_date`, `purchase_time`, `buy_price`, `amount_purchased`, `exchange_fee`, `notes`, `portfolio_id`) VALUES (1, NULL, 'Bitcoin', 'XBT/USD', 'Kraken', '2019-11-29', '14:54:00', 7722.40, 1, 0.0012, NULL, 1);
+INSERT INTO `coin` (`id`, `logo`, `name`, `trading_pair`, `exchange`, `purchase_date`, `purchase_time`, `buy_price`, `amount_purchased`, `exchange_fee`, `notes`, `portfolio_id`) VALUES (1, NULL, 'Bitcoin', 'XBT/USD', 'Kraken', '2019-11-29', '14:54:00', 7722.40, 1, 0.0012, 'Bull run!', 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `coin_watch_list`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `portfoliodb`;
+INSERT INTO `coin_watch_list` (`id`, `watch_list_name`, `user_profile_id`, `logo_url`, `coin_name`, `trading_pair`, `exchange`, `alert_low`, `alert_high`) VALUES (1, 'Wish List', 1, NULL, 'ETH', 'ETH/USD', 'Coinbase', 125.00, 200.00);
 
 COMMIT;
 

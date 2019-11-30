@@ -1,10 +1,14 @@
 package com.skilldistillery.bitfolio.entities;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -31,6 +35,12 @@ public class UserProfile {
 	private String bio;
 	
 	private String images;
+	
+	@OneToMany(mappedBy="user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+	private List<Portfolio> portfolios;
+	
+	@OneToMany(mappedBy="user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+	private List<CoinWatchList> watchLists;
 
 	public int getId() {
 		return id;
