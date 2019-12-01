@@ -149,6 +149,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 START TRANSACTION;
 USE `portfoliodb`;
 INSERT INTO `user_profile` (`id`, `first_name`, `last_name`, `city`, `state`, `profile_picture_url`, `bio`, `images`) VALUES (1, 'Richard', 'Newman', 'Denver', 'Colorado', NULL, 'Life, liberty, crypto!', NULL);
+INSERT INTO `user_profile` (`id`, `first_name`, `last_name`, `city`, `state`, `profile_picture_url`, `bio`, `images`) VALUES (2, 'Lauren', 'Newman', 'Denver', 'Colorado', NULL, 'Bitcoin maximalist.', NULL);
 
 COMMIT;
 
@@ -159,6 +160,7 @@ COMMIT;
 START TRANSACTION;
 USE `portfoliodb`;
 INSERT INTO `user_account` (`id`, `user_profile_id`, `username`, `email`, `password`, `password_salt`, `password_hash_algorithm`, `password_reminder_token`, `password_reminder_expire`, `email_confirmation_token`, `registration_time`, `active`) VALUES (1, 1, 'rick', 'rick@richardnewman.dev', '123', NULL, NULL, NULL, NULL, NULL, '2019-11-29 14:49:00', 1);
+INSERT INTO `user_account` (`id`, `user_profile_id`, `username`, `email`, `password`, `password_salt`, `password_hash_algorithm`, `password_reminder_token`, `password_reminder_expire`, `email_confirmation_token`, `registration_time`, `active`) VALUES (2, 2, 'lauren', 'lauren@gmail.com', '123', NULL, NULL, NULL, NULL, NULL, '2019-11-29 16:21:00', 1);
 
 COMMIT;
 
@@ -169,6 +171,7 @@ COMMIT;
 START TRANSACTION;
 USE `portfoliodb`;
 INSERT INTO `portfolio` (`id`, `portfolio_name`, `user_profile_id`) VALUES (1, 'primary', 1);
+INSERT INTO `portfolio` (`id`, `portfolio_name`, `user_profile_id`) VALUES (2, 'Golden Egg', 2);
 
 COMMIT;
 
@@ -179,6 +182,8 @@ COMMIT;
 START TRANSACTION;
 USE `portfoliodb`;
 INSERT INTO `coin` (`id`, `logo`, `name`, `trading_pair`, `exchange`, `purchase_date`, `purchase_time`, `buy_price`, `amount_purchased`, `exchange_fee`, `notes`, `portfolio_id`) VALUES (1, NULL, 'Bitcoin', 'XBT/USD', 'Kraken', '2019-11-29', '14:54:00', 7722.40, 1, 0.0012, 'Bull run!', 1);
+INSERT INTO `coin` (`id`, `logo`, `name`, `trading_pair`, `exchange`, `purchase_date`, `purchase_time`, `buy_price`, `amount_purchased`, `exchange_fee`, `notes`, `portfolio_id`) VALUES (2, NULL, 'Bitcoin', 'XBT/USD', 'Kraken', '2012-06-12', '13:00:00', 10.54, 200, NULL, 'In before the masses.', 2);
+INSERT INTO `coin` (`id`, `logo`, `name`, `trading_pair`, `exchange`, `purchase_date`, `purchase_time`, `buy_price`, `amount_purchased`, `exchange_fee`, `notes`, `portfolio_id`) VALUES (3, NULL, 'Ethereum', 'ETH/USD', 'Coinbase', '2019-11-30', '16:00:00', 152.04, 5, NULL, NULL, 2);
 
 COMMIT;
 
@@ -189,6 +194,7 @@ COMMIT;
 START TRANSACTION;
 USE `portfoliodb`;
 INSERT INTO `coin_watch_list` (`id`, `watch_list_name`, `user_profile_id`, `logo_url`, `coin_name`, `trading_pair`, `exchange`, `alert_low`, `alert_high`) VALUES (1, 'Wish List', 1, NULL, 'ETH', 'ETH/USD', 'Coinbase', 125.00, 200.00);
+INSERT INTO `coin_watch_list` (`id`, `watch_list_name`, `user_profile_id`, `logo_url`, `coin_name`, `trading_pair`, `exchange`, `alert_low`, `alert_high`) VALUES (2, 'Chopping Block', 2, NULL, 'Cardano', 'ADA/BTC', 'Kraken', 0.02, 0.077);
 
 COMMIT;
 
