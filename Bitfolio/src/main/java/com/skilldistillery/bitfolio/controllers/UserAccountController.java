@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -66,7 +67,7 @@ public class UserAccountController {
 			
 			try {
 				userAccount = svc.updateUserAccount(id, userAccount);
-				resp.setStatus(201);
+				resp.setStatus(200);
 				return userAccount;
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -82,7 +83,37 @@ public class UserAccountController {
 		
 		try {
 			svc.deactivateUserAccount(id);
-			resp.setStatus(201);
+			resp.setStatus(200);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			resp.setStatus(400);
+			return false;
+		}
+		
+	}
+	@PutMapping("user/reactivate/{id}")
+	public boolean reactivateUserAccount(@PathVariable int id,
+			HttpServletResponse resp) {
+		
+		try {
+			svc.reactivateUserAccount(id);
+			resp.setStatus(200);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			resp.setStatus(400);
+			return false;
+		}
+		
+	}
+	@DeleteMapping("admin/deleteUser/{id}")
+	public boolean deleteUserAccount(@PathVariable int id,
+			HttpServletResponse resp) {
+		
+		try {
+			svc.deleteUserAccount(id);
+			resp.setStatus(204);
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
