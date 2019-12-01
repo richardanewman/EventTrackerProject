@@ -90,13 +90,12 @@ public class CoinController {
 //		}
 	
 	
-	@DeleteMapping("portfolio/{pid}/coin/{cid}")
-	public boolean deleteCoin(@PathVariable int pid, 
-			@PathVariable int cid, 
+	@DeleteMapping("coin/{id}")
+	public boolean deleteCoin(@PathVariable int id, 
 			HttpServletRequest req,
 			HttpServletResponse resp) {
 		try {
-			boolean delete = svc.deleteCoin(pid, cid);
+			boolean delete = svc.deleteCoin(id);
 			if (delete) {
 			resp.setStatus(204);
 			return true;
