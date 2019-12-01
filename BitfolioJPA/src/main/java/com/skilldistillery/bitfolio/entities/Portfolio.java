@@ -19,7 +19,7 @@ public class Portfolio {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	
 	@Column(name="portfolio_name")
 	private String portfolioName;
@@ -36,7 +36,7 @@ public class Portfolio {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	
@@ -66,7 +66,7 @@ public class Portfolio {
 	}
 
 
-	public Portfolio(int id, String portfolioName, UserProfile user, List<Coin> coins) {
+	public Portfolio(Integer id, String portfolioName, UserProfile user, List<Coin> coins) {
 		super();
 		this.id = id;
 		this.portfolioName = portfolioName;
@@ -98,7 +98,7 @@ public class Portfolio {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((coins == null) ? 0 : coins.hashCode());
-		result = prime * result + id;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((portfolioName == null) ? 0 : portfolioName.hashCode());
 		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		return result;
@@ -118,7 +118,10 @@ public class Portfolio {
 				return false;
 		} else if (!coins.equals(other.coins))
 			return false;
-		if (id != other.id)
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
 			return false;
 		if (portfolioName == null) {
 			if (other.portfolioName != null)

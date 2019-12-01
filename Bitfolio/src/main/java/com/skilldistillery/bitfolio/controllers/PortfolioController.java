@@ -67,31 +67,35 @@ public class PortfolioController {
 		//Only allows user to update portfolio name //
 		//******************************************//
 	
-	@PutMapping("user/{id}/portfolio")
+	@PutMapping("user/portfolio/{id}")
 	public Portfolio updatePortfolio(@PathVariable int id, 
 			@RequestBody Portfolio portfolio, 
 			HttpServletRequest req,
 			HttpServletResponse resp) {
 		try {
-			portfolio = svc.createPortfolio(id, portfolio);
+			portfolio = svc.updatePortfolio(id, portfolio);
+		
 			resp.setStatus(200);
-			
 			return portfolio;
+			
+		
+		
 		} catch (Exception e) {
 			e.printStackTrace();
 			resp.setStatus(400);
 			return null;
 		}
-		
-	}
 	
-	@DeleteMapping("user/{uid}/portfolio/{pid}")
-	public boolean deletePortfolio(@PathVariable int uid, 
-			@PathVariable int pid, 
+	
+		}
+	
+	
+	@DeleteMapping("portfolio/{id}")
+	public boolean deletePortfolio(@PathVariable int id,
 			HttpServletRequest req,
 			HttpServletResponse resp) {
 		try {
-			boolean delete = svc.deletePortfolio(uid, pid);
+			boolean delete = svc.deletePortfolio(id);
 			if (delete) {
 			resp.setStatus(204);
 			return true;

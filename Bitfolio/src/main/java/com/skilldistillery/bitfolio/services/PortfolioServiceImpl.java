@@ -6,8 +6,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.bitfolio.entities.Coin;
 import com.skilldistillery.bitfolio.entities.Portfolio;
 import com.skilldistillery.bitfolio.entities.UserProfile;
+import com.skilldistillery.bitfolio.repositories.CoinRepository;
 import com.skilldistillery.bitfolio.repositories.PortfolioRepository;
 import com.skilldistillery.bitfolio.repositories.UserProfileRepository;
 
@@ -19,6 +21,9 @@ public class PortfolioServiceImpl implements PortfolioService {
 	
 	@Autowired
 	UserProfileRepository userRepo;
+	
+	@Autowired
+	CoinRepository coinRepo;
 	
 	public List<Portfolio> getAllPortfolios() {
 		return portRepo.findAll();
@@ -53,36 +58,42 @@ public class PortfolioServiceImpl implements PortfolioService {
 	
 	@Override
 	public Portfolio updatePortfolio(int id, Portfolio portfolio) {
-		UserProfile user = null;
-		Optional<UserProfile> opt = userRepo.findById(id);
-		if (opt.isPresent()) {
-			user = opt.get();
-		}
-		if (user.getPortfolios().contains(portfolio)){
-			portfolio.setPortfolioName(portfolio.getPortfolioName());
-		}
-		portRepo.saveAndFlush(portfolio);
-		return portfolio;
-	}
-	@Override
-	public boolean deletePortfolio(int uid, int pid) {
-		UserProfile user = null;
-		Optional<UserProfile> opt = userRepo.findById(uid);
-		if (opt.isPresent()) {
-			user = opt.get();
-		}
 		Portfolio port = null;
-		Optional<Portfolio> portOpt = portRepo.findById(pid);
-		if(opt.isPresent()) {
-			port = portOpt.get();
-		}
-		if (user.getPortfolios().contains(port)){
-			port.setUser(null);
-			portRepo.delete(port);
-			return true;
-		}else {
-			return false;
+		Optional<Portfolio> opt = portRepo.findById(id);
+		if (opt.isPresent()) {
+			port = opt.get();
 		}
 		
+			port.setPortfolioName(portfolio.getPortfolioName());
+			portRepo.saveAndFlush(port);
+			
+		
+		return port;
 	}
+			
+		
+		
+	
+	@Override
+	public boolean deletePortfolio(int id) {
+		Portfolio port = null;
+		Optional<Portfolio> opt = portRepo.findById(id);
+		if (opt.isPresent()) {
+			port = opt.get();
+		}
+		List<Coin> coins = port.getCoins();
+		for (Coin coin : coins) {
+			coin.setPortfolio(null);
+			
+		}
+		port.setCoins(null);
+		port.setUser(null);
+		portRepo.deleteById(id);
+		
+		return true;
+	}	
+	
+		
+		
+	
 }
