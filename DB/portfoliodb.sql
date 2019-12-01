@@ -95,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `coin` (
   `purchase_time` TIME NULL,
   `buy_price` DOUBLE NULL,
   `amount_purchased` DOUBLE NULL,
-  `exchange_fee` DOUBLE NULL,
+  `exchange_fee` DOUBLE NULL DEFAULT 0.00,
   `notes` TEXT NULL,
   `portfolio_id` INT NOT NULL,
   PRIMARY KEY (`id`, `portfolio_id`),
@@ -182,8 +182,8 @@ COMMIT;
 START TRANSACTION;
 USE `portfoliodb`;
 INSERT INTO `coin` (`id`, `logo`, `name`, `trading_pair`, `exchange`, `purchase_date`, `purchase_time`, `buy_price`, `amount_purchased`, `exchange_fee`, `notes`, `portfolio_id`) VALUES (1, NULL, 'Bitcoin', 'XBT/USD', 'Kraken', '2019-11-29', '14:54:00', 7722.40, 1, 0.0012, 'Bull run!', 1);
-INSERT INTO `coin` (`id`, `logo`, `name`, `trading_pair`, `exchange`, `purchase_date`, `purchase_time`, `buy_price`, `amount_purchased`, `exchange_fee`, `notes`, `portfolio_id`) VALUES (2, NULL, 'Bitcoin', 'XBT/USD', 'Kraken', '2012-06-12', '13:00:00', 10.54, 200, NULL, 'In before the masses.', 2);
-INSERT INTO `coin` (`id`, `logo`, `name`, `trading_pair`, `exchange`, `purchase_date`, `purchase_time`, `buy_price`, `amount_purchased`, `exchange_fee`, `notes`, `portfolio_id`) VALUES (3, NULL, 'Ethereum', 'ETH/USD', 'Coinbase', '2019-11-30', '16:00:00', 152.04, 5, NULL, NULL, 2);
+INSERT INTO `coin` (`id`, `logo`, `name`, `trading_pair`, `exchange`, `purchase_date`, `purchase_time`, `buy_price`, `amount_purchased`, `exchange_fee`, `notes`, `portfolio_id`) VALUES (2, NULL, 'Bitcoin', 'XBT/USD', 'Kraken', '2012-06-12', '13:00:00', 10.54, 200, 0.00, 'In before the masses.', 2);
+INSERT INTO `coin` (`id`, `logo`, `name`, `trading_pair`, `exchange`, `purchase_date`, `purchase_time`, `buy_price`, `amount_purchased`, `exchange_fee`, `notes`, `portfolio_id`) VALUES (3, NULL, 'Ethereum', 'ETH/USD', 'Coinbase', '2019-11-30', '16:00:00', 152.04, 5, 0.00, NULL, 2);
 
 COMMIT;
 

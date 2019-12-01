@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Coin {
 	
@@ -35,16 +37,17 @@ public class Coin {
 	private Time purchaseTime;
 	
 	@Column(name="buy_price")
-	private double buyPrice;
+	private Double buyPrice;
 	
 	@Column(name="amount_purchased")
-	private double amountPurchased;
+	private Double amountPurchased;
 	
 	@Column(name="exchange_fee")
-	private double exchangeFee;
+	private Double exchangeFee;
 	
 	private String notes;
 	
+	@JsonIgnore
 	@ManyToOne(cascade = { CascadeType.PERSIST})
 	@JoinColumn(name="portfolio_id")
 	private Portfolio portfolio;
@@ -109,7 +112,7 @@ public class Coin {
 		return buyPrice;
 	}
 
-	public void setBuyPrice(double buyPrice) {
+	public void setBuyPrice(Double buyPrice) {
 		this.buyPrice = buyPrice;
 	}
 
@@ -117,7 +120,7 @@ public class Coin {
 		return amountPurchased;
 	}
 
-	public void setAmountPurchased(double amountPurchased) {
+	public void setAmountPurchased(Double amountPurchased) {
 		this.amountPurchased = amountPurchased;
 	}
 
@@ -125,7 +128,7 @@ public class Coin {
 		return exchangeFee;
 	}
 
-	public void setExchangeFee(double exchangeFee) {
+	public void setExchangeFee(Double exchangeFee) {
 		this.exchangeFee = exchangeFee;
 	}
 
@@ -148,7 +151,7 @@ public class Coin {
 	
 
 	public Coin(int id, String logo, String name, String exchange, String tradingPair, Date purchaseDate,
-			Time purchaseTime, double buyPrice, double amountPurchased, double exchangeFee, String notes,
+			Time purchaseTime, Double buyPrice, Double amountPurchased, Double exchangeFee, String notes,
 			Portfolio portfolio) {
 		super();
 		this.id = id;
@@ -178,10 +181,10 @@ public class Coin {
 		builder.append(logo);
 		builder.append(", name=");
 		builder.append(name);
-		builder.append(", exchange=");
-		builder.append(exchange);
 		builder.append(", tradingPair=");
 		builder.append(tradingPair);
+		builder.append(", exchange=");
+		builder.append(exchange);
 		builder.append(", purchaseDate=");
 		builder.append(purchaseDate);
 		builder.append(", purchaseTime=");
@@ -204,14 +207,10 @@ public class Coin {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		long temp;
-		temp = Double.doubleToLongBits(amountPurchased);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		temp = Double.doubleToLongBits(buyPrice);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((amountPurchased == null) ? 0 : amountPurchased.hashCode());
+		result = prime * result + ((buyPrice == null) ? 0 : buyPrice.hashCode());
 		result = prime * result + ((exchange == null) ? 0 : exchange.hashCode());
-		temp = Double.doubleToLongBits(exchangeFee);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((exchangeFee == null) ? 0 : exchangeFee.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((logo == null) ? 0 : logo.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
@@ -232,16 +231,25 @@ public class Coin {
 		if (getClass() != obj.getClass())
 			return false;
 		Coin other = (Coin) obj;
-		if (Double.doubleToLongBits(amountPurchased) != Double.doubleToLongBits(other.amountPurchased))
+		if (amountPurchased == null) {
+			if (other.amountPurchased != null)
+				return false;
+		} else if (!amountPurchased.equals(other.amountPurchased))
 			return false;
-		if (Double.doubleToLongBits(buyPrice) != Double.doubleToLongBits(other.buyPrice))
+		if (buyPrice == null) {
+			if (other.buyPrice != null)
+				return false;
+		} else if (!buyPrice.equals(other.buyPrice))
 			return false;
 		if (exchange == null) {
 			if (other.exchange != null)
 				return false;
 		} else if (!exchange.equals(other.exchange))
 			return false;
-		if (Double.doubleToLongBits(exchangeFee) != Double.doubleToLongBits(other.exchangeFee))
+		if (exchangeFee == null) {
+			if (other.exchangeFee != null)
+				return false;
+		} else if (!exchangeFee.equals(other.exchangeFee))
 			return false;
 		if (id != other.id)
 			return false;

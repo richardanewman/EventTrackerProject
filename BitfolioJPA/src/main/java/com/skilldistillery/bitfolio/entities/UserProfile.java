@@ -106,8 +106,25 @@ public class UserProfile {
 		this.images = images;
 	}
 
+	public List<Portfolio> getPortfolios() {
+		return portfolios;
+	}
+
+	public void setPortfolios(List<Portfolio> portfolios) {
+		this.portfolios = portfolios;
+	}
+
+	public List<CoinWatchList> getWatchLists() {
+		return watchLists;
+	}
+
+	public void setWatchLists(List<CoinWatchList> watchLists) {
+		this.watchLists = watchLists;
+	}
+
+
 	public UserProfile(int id, String firstName, String lastName, String city, String state, String photoURL,
-			String bio, String images) {
+			String bio, String images, List<Portfolio> portfolios, List<CoinWatchList> watchLists) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -117,6 +134,8 @@ public class UserProfile {
 		this.photoURL = photoURL;
 		this.bio = bio;
 		this.images = images;
+		this.portfolios = portfolios;
+		this.watchLists = watchLists;
 	}
 
 	public UserProfile() {
@@ -142,6 +161,10 @@ public class UserProfile {
 		builder.append(bio);
 		builder.append(", images=");
 		builder.append(images);
+		builder.append(", portfolios=");
+		builder.append(portfolios);
+		builder.append(", watchLists=");
+		builder.append(watchLists);
 		builder.append("]");
 		return builder.toString();
 	}
@@ -157,7 +180,9 @@ public class UserProfile {
 		result = prime * result + ((images == null) ? 0 : images.hashCode());
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + ((photoURL == null) ? 0 : photoURL.hashCode());
+		result = prime * result + ((portfolios == null) ? 0 : portfolios.hashCode());
 		result = prime * result + ((state == null) ? 0 : state.hashCode());
+		result = prime * result + ((watchLists == null) ? 0 : watchLists.hashCode());
 		return result;
 	}
 
@@ -202,10 +227,20 @@ public class UserProfile {
 				return false;
 		} else if (!photoURL.equals(other.photoURL))
 			return false;
+		if (portfolios == null) {
+			if (other.portfolios != null)
+				return false;
+		} else if (!portfolios.equals(other.portfolios))
+			return false;
 		if (state == null) {
 			if (other.state != null)
 				return false;
 		} else if (!state.equals(other.state))
+			return false;
+		if (watchLists == null) {
+			if (other.watchLists != null)
+				return false;
+		} else if (!watchLists.equals(other.watchLists))
 			return false;
 		return true;
 	}
