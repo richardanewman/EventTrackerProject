@@ -84,12 +84,12 @@ public class PortfolioServiceImpl implements PortfolioService {
 		List<Coin> coins = port.getCoins();
 		for (Coin coin : coins) {
 			coin.setPortfolio(null);
-			
 		}
+		
 		port.setCoins(null);
 		port.setUser(null);
 		portRepo.deleteById(id);
-		
+		coinRepo.deleteAll(coins);
 		return true;
 	}	
 	
