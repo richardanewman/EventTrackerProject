@@ -62,4 +62,29 @@ public class UserAccountServiceImpl implements UserAccountService {
 		return true;
 
 	}
+	
+	@Override
+	public boolean reactivateUserAccount(int id) {
+		UserAccount reactivate = null;
+		Optional<UserAccount> opt = acctRepo.findById(id);
+		if (opt.isPresent()) {
+			reactivate = opt.get();
+		}
+		reactivate.setActive(true);
+		acctRepo.saveAndFlush(reactivate);
+		return true;
+		
+	}
+	@Override
+	public boolean deleteUserAccount(int id) {
+		UserAccount delete = null;
+		Optional<UserAccount> opt = acctRepo.findById(id);
+		if (opt.isPresent()) {
+			delete = opt.get();
+		}
+		acctRepo.delete(delete);
+		return true;
+		
+	}
+	
 }

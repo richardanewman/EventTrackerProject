@@ -11,4 +11,6 @@ public interface UserAccountService {
 	UserAccount createUser(UserAccount userAccount);
 	UserAccount updateUserAccount(int id, UserAccount userAccount);
 	boolean deactivateUserAccount(int id);
+	boolean reactivateUserAccount(int id);
+	boolean deleteUserAccount(int id);
 }
