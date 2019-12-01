@@ -59,7 +59,15 @@ class UserProfileTest {
 	@DisplayName("Testing user profile get bio")
 	void test3() {
 		assertNotNull(user);
-		assertEquals("Life, liberty, crypto!", user.getBio());
+		assertEquals("Life, liberty, and crypto!", user.getBio());
+		
+	}
+	
+	@Test
+	@DisplayName("Testing user profile get portfolio")
+	void test4() {
+		assertNotNull(user);
+		assertEquals("primary", user.getPortfolios().get(0).getPortfolioName());
 		
 	}
 	

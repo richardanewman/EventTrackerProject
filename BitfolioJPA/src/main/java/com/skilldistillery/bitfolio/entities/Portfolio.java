@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Portfolio {
 	
@@ -22,6 +24,7 @@ public class Portfolio {
 	@Column(name="portfolio_name")
 	private String portfolioName;
 	
+	@JsonIgnore
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	@JoinColumn(name= "user_profile_id")
 	private UserProfile user;

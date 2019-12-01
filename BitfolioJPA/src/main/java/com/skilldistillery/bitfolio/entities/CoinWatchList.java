@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="coin_watch_list")
 public class CoinWatchList {
@@ -21,6 +23,7 @@ public class CoinWatchList {
 	@Column(name="watch_list_name")
 	private String watchListName;
 	
+	@JsonIgnore
 	@ManyToOne(cascade = { CascadeType.PERSIST})
 	@JoinColumn(name="user_profile_id")
 	private UserProfile user;
@@ -37,10 +40,10 @@ public class CoinWatchList {
 	private String exchange;
 	
 	@Column(name="alert_low")
-	private double alertLow;
+	private Double alertLow;
 	
 	@Column(name="alert_high")
-	private double alertHigh;
+	private Double alertHigh;
 
 	public int getId() {
 		return id;
@@ -102,7 +105,7 @@ public class CoinWatchList {
 		return alertLow;
 	}
 
-	public void setAlertLow(double alertLow) {
+	public void setAlertLow(Double alertLow) {
 		this.alertLow = alertLow;
 	}
 
@@ -110,12 +113,12 @@ public class CoinWatchList {
 		return alertHigh;
 	}
 
-	public void setAlertHigh(double alertHigh) {
+	public void setAlertHigh(Double alertHigh) {
 		this.alertHigh = alertHigh;
 	}
 
 	public CoinWatchList(int id, String watchListName, UserProfile user, String logo, String coinName,
-			String tradingPair, String exchange, double alertLow, double alertHigh) {
+			String tradingPair, String exchange, Double alertLow, Double alertHigh) {
 		super();
 		this.id = id;
 		this.watchListName = watchListName;
@@ -161,11 +164,8 @@ public class CoinWatchList {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		long temp;
-		temp = Double.doubleToLongBits(alertHigh);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		temp = Double.doubleToLongBits(alertLow);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((alertHigh == null) ? 0 : alertHigh.hashCode());
+		result = prime * result + ((alertLow == null) ? 0 : alertLow.hashCode());
 		result = prime * result + ((coinName == null) ? 0 : coinName.hashCode());
 		result = prime * result + ((exchange == null) ? 0 : exchange.hashCode());
 		result = prime * result + id;
@@ -185,9 +185,15 @@ public class CoinWatchList {
 		if (getClass() != obj.getClass())
 			return false;
 		CoinWatchList other = (CoinWatchList) obj;
-		if (Double.doubleToLongBits(alertHigh) != Double.doubleToLongBits(other.alertHigh))
+		if (alertHigh == null) {
+			if (other.alertHigh != null)
+				return false;
+		} else if (!alertHigh.equals(other.alertHigh))
 			return false;
-		if (Double.doubleToLongBits(alertLow) != Double.doubleToLongBits(other.alertLow))
+		if (alertLow == null) {
+			if (other.alertLow != null)
+				return false;
+		} else if (!alertLow.equals(other.alertLow))
 			return false;
 		if (coinName == null) {
 			if (other.coinName != null)
