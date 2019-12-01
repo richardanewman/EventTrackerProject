@@ -67,10 +67,10 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `portfolio` ;
 
 CREATE TABLE IF NOT EXISTS `portfolio` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `portfolio_name` VARCHAR(45) NULL,
-  `user_profile_id` INT NOT NULL,
-  PRIMARY KEY (`id`, `user_profile_id`),
+  `user_profile_id` INT NULL,
+  PRIMARY KEY (`id`),
   INDEX `fk_portfolio_user_profile1_idx` (`user_profile_id` ASC),
   CONSTRAINT `fk_portfolio_user_profile1`
     FOREIGN KEY (`user_profile_id`)
