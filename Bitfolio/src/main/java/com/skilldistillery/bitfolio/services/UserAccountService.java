@@ -1,5 +1,14 @@
 package com.skilldistillery.bitfolio.services;
 
-public interface UserAccountService {
+import java.util.List;
 
+import com.skilldistillery.bitfolio.entities.UserAccount;
+
+public interface UserAccountService {
+	
+	List<UserAccount> getAllUserAccounts();
+	UserAccount getUserAccountById(int id);
+	UserAccount createUser(UserAccount userAccount);
+	UserAccount updateUserAccount(int id, UserAccount userAccount);
+	boolean deactivateUserAccount(int id);
 }
