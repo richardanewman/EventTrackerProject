@@ -58,7 +58,11 @@ The primary topics applied from Week 12 at Skill Distillery were on RESTful APIs
 
 ### Lessons Learned
 
+I really enjoy working with API first design. It's similar to TDD in that many conflicts/design-errors are eliminated before they become a much larger problem down the line. It definitely took some time to adjust to thinking from this new perspective, but once I adjusted to it, I quickly started to prefer this method over our previous workflow. Postman also makes testing much easier and saving the routes into a collections helps to avoid any missed steps in the build process.
 
+Overall, this project went smoothly with was worrisome. I did, however, have some trouble getting my delete methods to work when the method used .contains() to check if a list of objects contained the object I wanted to delete. Instead of deleting it set the appropriate fields to null and persisted in the database until the route ran once more. Then and only then did it delete. I removed the .contains() check and simply routed the check to the mapping to ensure that the appropriate list was being used. I will definitely check into this issue more, but I am confident in the solution that I came up with to solve the issue.
+
+Looking forward to continuing this project on the frontend and integrating an external API to enhance the applications Functionality.
 
 
 
