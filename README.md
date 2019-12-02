@@ -98,17 +98,17 @@ You are embarking on a weekend project that you may or may not come back to afte
 
 ### Where to start?
 
-1 Create a new STS workspace for your project.
+1. Create a new STS workspace for your project.
   * Initialize your workspace with git.
   * Associate your workspace with a Github repo named EventTrackerProject.
-2 Use MySQL Workbench to create a database schema with a single table.
+2. Use MySQL Workbench to create a database schema with a single table.
   * Be sure to create a appusername@localhost account with a password for your database.
   * Include some initial sample data.
-3 Create a Gradle Project for your JPA entity and tests.
-4 Create a Spring Boot project for your REST API controller(s), service, and Spring Data JPA repository.
-5 Create controller logic to perform the basic CRUD operations of a REST API.
+3. Create a Gradle Project for your JPA entity and tests.
+4. Create a Spring Boot project for your REST API controller(s), service, and Spring Data JPA repository.
+5. Create controller logic to perform the basic CRUD operations of a REST API.
   * Test these routes using Postman
-6 Deploy your project to your EC2 instance, and link to it from your portfolio web site.
+6. Deploy your project to your EC2 instance, and link to it from your portfolio web site.
 
 ### Goal
 
