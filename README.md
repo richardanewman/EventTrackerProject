@@ -68,7 +68,9 @@ Looking forward to continuing this project on the frontend and integrating an ex
 
 ### How to Run
 
-You must compile this program to run it on a localhost or an EC2 instance. Download or clone this repository to a local directory. Open Spring Tool Suite (or your favorite IDE) and import the project under the File menu. Alternatively, you can clone the repository directly into your IDE via terminal. Once you have compiled it, click run and follow the prompts.
+You can access the routes above using the following URL: http://3.132.5.31:8080/Bitfolio/
+
+Alternatively, you can compile this program to run on your own localhost or your own EC2 instance. Download or clone this repository to a local directory. Open Spring Tool Suite (or your favorite IDE) and import the project under the File menu. Alternatively, you can clone the repository directly into your IDE via terminal. Once you have compiled it, click run and follow the prompts.
 
 Clone with SSH:
 
