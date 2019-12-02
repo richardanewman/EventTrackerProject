@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.bitfolio.entities.Portfolio;
 import com.skilldistillery.bitfolio.services.PortfolioService;
+import com.skilldistillery.bitfolio.services.UserProfileService;
 
 @RestController
 @RequestMapping("api")
@@ -24,6 +25,9 @@ public class PortfolioController {
 	
 	@Autowired
 	PortfolioService svc;
+	
+	@Autowired
+	UserProfileService userSvc;
 	
 	
 	@GetMapping("admin/portfolios")
@@ -67,7 +71,7 @@ public class PortfolioController {
 		//Only allows user to update portfolio name //
 		//******************************************//
 	
-	@PutMapping("user/portfolio/{id}")
+	@PutMapping("user/{id}/portfolio")
 	public Portfolio updatePortfolio(@PathVariable int id, 
 			@RequestBody Portfolio portfolio, 
 			HttpServletRequest req,
@@ -90,29 +94,23 @@ public class PortfolioController {
 		}
 	
 	
-	@DeleteMapping("portfolio/{id}")
-	public boolean deletePortfolio(@PathVariable int id,
+	@DeleteMapping("user/{uid}/portfolio/{pid}")
+	public boolean deletePortfolio(@PathVariable int uid,
+			@PathVariable int pid,
 			HttpServletRequest req,
 			HttpServletResponse resp) {
-		try {
-			boolean delete = svc.deletePortfolio(id);
-			if (delete) {
-			resp.setStatus(204);
-			return true;
+		boolean result = false;
+		if(userSvc.getUserProfileById(uid) != null) {
 			
-			} else {
-				resp.setStatus(400);
-				return false;
-				
-			}
+			result = svc.deletePortfolio(pid);
 			
 			
-		} catch (Exception e) {
-			e.printStackTrace();
-			resp.setStatus(400);
-			return false;
+		}else {
+			resp.setStatus(404);
+			return result;
 		}
-		
+		resp.setStatus(200);
+		return result;
 	}
 	
 	
