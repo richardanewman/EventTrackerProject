@@ -70,6 +70,23 @@ Looking forward to continuing this project on the frontend and integrating an ex
 
 You can access the routes above using the following URL: http://3.132.5.31:8080/Bitfolio/
 
+For example, the first route can be run on a browser or in Postman with the following URL: http://3.132.5.31:8080/Bitfolio/api/admin/users
+
+You can also access these routes using my Postman routes below:
+
+<div class="postman-run-button"
+data-postman-action="collection/import"
+data-postman-var-1="86d7579bbc5013d49433"></div>
+<script type="text/javascript">
+  (function (p,o,s,t,m,a,n) {
+    !p[s] && (p[s] = function () { (p[t] || (p[t] = [])).push(arguments); });
+    !o.getElementById(s+t) && o.getElementsByTagName("head")[0].appendChild((
+      (n = o.createElement("script")),
+      (n.id = s+t), (n.async = 1), (n.src = m), n
+    ));
+  }(window, document, "_pm", "PostmanRunObject", "https://run.pstmn.io/button.js"));
+</script>
+
 Alternatively, you can compile this program to run on your own localhost or your own EC2 instance. Download or clone this repository to a local directory. Open Spring Tool Suite (or your favorite IDE) and import the project under the File menu. Alternatively, you can clone the repository directly into your IDE via terminal. Once you have compiled it, click run and follow the prompts.
 
 Clone with SSH:
