@@ -82,13 +82,14 @@ public class CoinController {
 	}
 	
 	
-	@PutMapping("portfolio/{id}/coin")
-	public Coin updateCoin(@PathVariable int id, 
+	@PutMapping("portfolio/{pid}/coin/{cid}")
+	public Coin updateCoin(@PathVariable int pid, 
+			@PathVariable int cid,
 			@RequestBody Coin coin, 
 			HttpServletRequest req,
 			HttpServletResponse resp) {
 		try {
-			coin = svc.updateCoin(id, coin);
+			coin = svc.updateCoin(cid, coin);
 		
 			resp.setStatus(200);
 			return coin;

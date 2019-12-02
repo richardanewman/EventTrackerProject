@@ -10,6 +10,6 @@ public interface CoinService {
 	Coin findCoinById(int id);
 	List<Coin> getAllCoinsByPortfolioId(int id);
 	Coin createCoin(int id, Coin coin);
-	Coin updateCoin(int id, Coin coin);
+	Coin updateCoin(int cid, Coin coin);
 
 }

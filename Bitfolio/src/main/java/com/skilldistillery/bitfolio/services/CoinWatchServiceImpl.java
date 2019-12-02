@@ -56,9 +56,9 @@ public class CoinWatchServiceImpl implements CoinWatchService {
 	
 	
 	@Override
-	public CoinWatch updateCoinWatch(int id, CoinWatch coinWatch) {
+	public CoinWatch updateCoinWatch(int wid, CoinWatch coinWatch) {
 		CoinWatch watch = null;
-		Optional<CoinWatch> opt = watchRepo.findById(id);
+		Optional<CoinWatch> opt = watchRepo.findById(wid);
 		if (opt.isPresent()) {
 			watch = opt.get();
 		}
