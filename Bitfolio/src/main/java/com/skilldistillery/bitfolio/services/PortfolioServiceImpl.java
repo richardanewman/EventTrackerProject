@@ -75,9 +75,9 @@ public class PortfolioServiceImpl implements PortfolioService {
 		
 	
 	@Override
-	public boolean deletePortfolio(int id) {
+	public boolean deletePortfolio(int pid) {
 		Portfolio port = null;
-		Optional<Portfolio> opt = portRepo.findById(id);
+		Optional<Portfolio> opt = portRepo.findById(pid);
 		if (opt.isPresent()) {
 			port = opt.get();
 		}
@@ -88,7 +88,7 @@ public class PortfolioServiceImpl implements PortfolioService {
 		
 		port.setCoins(null);
 		port.setUser(null);
-		portRepo.deleteById(id);
+		portRepo.deleteById(pid);
 		coinRepo.deleteAll(coins);
 		return true;
 	}	

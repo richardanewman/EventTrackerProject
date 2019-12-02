@@ -10,7 +10,7 @@ public interface PortfolioService {
 	List<Portfolio> getAllPortfoliosByUserId(int id);
 	Portfolio createPortfolio(int id, Portfolio portfolio);
 	Portfolio updatePortfolio(int id, Portfolio portfolio);
-	boolean deletePortfolio(int id);
+	boolean deletePortfolio(int pid);
 
 
 }
