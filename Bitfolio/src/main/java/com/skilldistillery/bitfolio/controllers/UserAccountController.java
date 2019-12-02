@@ -107,7 +107,7 @@ public class UserAccountController {
 		}
 		
 	}
-	@DeleteMapping("admin/deleteUser/{id}")
+	@DeleteMapping("admin/delete/{id}")
 	public boolean deleteUserAccount(@PathVariable int id,
 			HttpServletResponse resp) {
 		

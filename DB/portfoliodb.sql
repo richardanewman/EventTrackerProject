@@ -193,7 +193,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `portfoliodb`;
-INSERT INTO `coin_watch` (`id`, `coin_watch_name`, `user_profile_id`, `logo_url`, `coin_name`, `trading_pair`, `exchange`, `alert_low`, `alert_high`) VALUES (1, 'Wish List', 1, NULL, 'ETH', 'ETH/USD', 'Coinbase', 125.00, 200.00);
+INSERT INTO `coin_watch` (`id`, `coin_watch_name`, `user_profile_id`, `logo_url`, `coin_name`, `trading_pair`, `exchange`, `alert_low`, `alert_high`) VALUES (1, 'Possible Channel Forming', 1, NULL, 'ETH', 'ETH/USD', 'Coinbase', 125.00, 200.00);
 INSERT INTO `coin_watch` (`id`, `coin_watch_name`, `user_profile_id`, `logo_url`, `coin_name`, `trading_pair`, `exchange`, `alert_low`, `alert_high`) VALUES (2, 'Chopping Block', 2, NULL, 'Cardano', 'ADA/BTC', 'Kraken', 0.02, 0.077);
 
 COMMIT;
