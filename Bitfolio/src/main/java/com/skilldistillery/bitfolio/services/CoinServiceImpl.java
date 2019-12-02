@@ -62,9 +62,9 @@ public class CoinServiceImpl implements CoinService {
 	}
 	
 	@Override
-	public Coin updateCoin(int id, Coin coin) {
+	public Coin updateCoin(int cid, Coin coin) {
 		Coin update = null;
-		Optional<Coin> opt = coinRepo.findById(id);
+		Optional<Coin> opt = coinRepo.findById(cid);
 		if (opt.isPresent()) {
 			update = opt.get();
 		}

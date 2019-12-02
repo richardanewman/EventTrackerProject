@@ -68,13 +68,14 @@ public class CoinWatchController {
 	}
 	
 	
-	@PutMapping("user/{id}/watch")
-	public CoinWatch updateCoinWatch(@PathVariable int id, 
+	@PutMapping("user/{uid}/watch/{wid}")
+	public CoinWatch updateCoinWatch(@PathVariable int uid,
+			@PathVariable int wid, 
 			@RequestBody CoinWatch coinWatch, 
 			HttpServletRequest req,
 			HttpServletResponse resp) {
 		try {
-			coinWatch = svc.updateCoinWatch(id, coinWatch);
+			coinWatch = svc.updateCoinWatch(wid, coinWatch);
 		
 			resp.setStatus(200);
 			return coinWatch;

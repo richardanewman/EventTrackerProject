@@ -9,7 +9,7 @@ public interface CoinWatchService {
 	CoinWatch findCoinWatchByWatchId(int id);
 	List<CoinWatch> findAllCoinWatchByUserId(int id);
 	CoinWatch createCoinWatch(int id, CoinWatch coinWatch);
-	CoinWatch updateCoinWatch(int id, CoinWatch coinWatch);
+	CoinWatch updateCoinWatch(int wid, CoinWatch coinWatch);
 	boolean deleteCoinWatch(int wid);
 
 }

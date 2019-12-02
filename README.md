@@ -24,12 +24,35 @@ The primary topics applied from Week 12 at Skill Distillery were on RESTful APIs
 | Return Type | Route                 | Functionality                  |
 |-------------|-----------------------|--------------------------------|
 | `List<UserAccount>`  |`GET api/admin/users`        | ADMIN Role** Gets all user accounts in Database    |
-| `UserAccount`        |`GET user/{id}`   | Gets one user account by id            |
+| `UserAccount`        |`GET api/user/{id}`   | Gets one user account by id            |
 | `UserAccount`        |`POST api/user`       | Creates a new user account and user profile             |
 | `UserAccount`        |`PUT api/user/{id}`   | Updates an existing user account by id|
-| `Boolean`            |`PUT user/deactivate/{id}`   | Deactivates an existing user account by id|
-| `Boolean`            |`PUT user/reactivate/{id}`   | Reactivates an existing user account by id|
-| `Boolean`     |`DELETE api/admin/delete/{id}`| Deletes an existing user account by id |
+| `Boolean`            |`PUT api/user/deactivate/{id}`   | Deactivates an existing user account by id|
+| `Boolean`            |`PUT api/user/reactivate/{id}`   | Reactivates an existing user account by id|
+| `Boolean`            |`DELETE api/admin/delete/{id}`| Deletes an existing user account by id |
+| `List<UserProfile>`  |`GET api/admin/user/profiles`        | ADMIN Role** Gets all user profiles in Database    |
+| `UserProfile`        |`GET api/user/profile/{id}`   | Gets one user profile by id            |
+| `UserProfile`        |`PUT api/user/profile/{id}`       | Updates an existing user profile by id             |
+| `List<Portfolio>`    |`GET api/admin/portfolios`        | ADMIN Role** Gets all portfolios in Database    |
+| `Portfolio`        |`GET api/admin/portfolio/{id}`   | ADMIN Role** Gets one user portfolio by id            |
+| `List<Portfolio>`        |`GET api/user/{id}/portfolios`       | Gets all portfolios by user_profile id             |
+| `Portfolio`        |`POST api/user/{id}/portfolio`       | Creates a new portfolio             |
+| `Portfolio`        |`PUT api/user/{id}/portfolio`   | Updates an existing portfolio by id|
+| `Boolean`            |`DELETE api/user/{uid}/portfolio/{pid}`| Deletes an existing portfolio by user id and portfolio id |
+| `List<Coin>`    |`GET api/admin/coins`        | ADMIN Role** Gets all coins in Database    |
+| `List<Coin>`        |`GET api/portfolio/{id}/coins`   | Gets all coins by portfolio id            |
+| `Coin`        |`GET api/portfolio/{pid}/coin/{cid}`       | Gets coin by portfolio id and by coin id             |
+| `Coin`        |`POST api/portfolio/{id}/coin`       | Creates a new coin adds to associated portfolio id           |
+| `Coin`        |`PUT api/portfolio/{pid}/coin/{cid}`   | Updates an existing coin by portfolio id and coin id|
+| `Boolean`            |`DELETE api/portfolio/{pid}/coin/{cid}`| Deletes an existing coin by portfolio id and coin id |
+| `List<CoinWatch>`    |`GET api/admin/watches`        | ADMIN Role** Gets all coin watches in Database    |
+| `CoinWatch`        |`GET api/admin/watch/{id}`   | ADMIN Role** Gets coin watch by id            |
+| `List<CoinWatch>`        |`GET api/user/{id}/watches`       | Gets all coin watches by user_profile id             |
+| `CoinWatch`        |`POST api/user/{id}/watch`       | Creates a new coin watch           |
+| `CoinWatch`        |`PUT api/user/{uid}/watch/{wid}`   | Updates an existing coin watch by user_profile id and watch id|
+| `Boolean`            |`DELETE api/user/{uid}/watch/{wid}`| Deletes an existing coin watch by user_profile id and coin watch id |
+
+
 
 ** Enhanced feature. Admin role will be implemented with Spring Security at later date.
 
