@@ -62,7 +62,7 @@ I really enjoy working with API first design. It's similar to TDD in that many c
 
 Overall, this project went smoothly with was worrisome. I did, however, have some trouble getting my delete methods to work when the method used .contains() to check if a list of objects contained the object I wanted to delete. Instead of deleting it set the appropriate fields to null and persisted in the database until the route ran once more. Then and only then did it delete. I removed the .contains() check and simply routed the check to the mapping to ensure that the appropriate list was being used. I will definitely check into this issue more, but I am confident in the solution that I came up with to solve the issue.
 
-Looking forward to continuing this project on the frontend and integrating an external API to enhance the applications Functionality.
+Looking forward to continuing this project on the frontend and integrating an external API to enhance the applications functionality.
 
 
 
