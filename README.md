@@ -72,9 +72,11 @@ You can access the routes above using the following URL: http://3.132.5.31:8080/
 
 For example, the first route can be run on a browser or in Postman with the following URL: http://3.132.5.31:8080/Bitfolio/api/admin/users
 
-You can also access these routes using my Postman collection below:
+You can also access find my Postman routes at the following link. Simply download and import to postman.
 
-https://www.getpostman.com/collections/86d7579bbc5013d49433
+https://github.com/richardanewman/EventTrackerProject/tree/master/Postman
+
+
 
 Alternatively, you can compile this program to run on your own localhost or your own EC2 instance. Download or clone this repository to a local directory. Open Spring Tool Suite (or your favorite IDE) and import the project under the File menu. Alternatively, you can clone the repository directly into your IDE via terminal. Once you have compiled it, click run and follow the prompts.
 
