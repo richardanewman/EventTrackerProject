@@ -14,10 +14,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class CoinWatchListTest {
+class CoinWatchTest {
 	private static EntityManagerFactory emf;
 	private static EntityManager em;
-	private CoinWatchList watchList;
+	private CoinWatch coinWatch;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -32,52 +32,52 @@ class CoinWatchListTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		watchList = em.find(CoinWatchList.class, 1);
+		coinWatch = em.find(CoinWatch.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		watchList = null;
+		coinWatch = null;
 	}
 
 	@Test
 	@DisplayName("Testing coin watch list get name")
 	void test1() {
-		assertNotNull(watchList);
-		assertEquals("Wish List", watchList.getWatchListName());
+		assertNotNull(coinWatch);
+		assertEquals("Wish List", coinWatch.getCoinWatchName());
 		
 	}
 	@Test
 	@DisplayName("Testing coin watch list alert low and high double and int")
 	void test2() {
-		assertNotNull(watchList);
-		assertEquals(125, watchList.getAlertLow());
-		assertEquals(200, watchList.getAlertHigh());
-		assertEquals(125.00, watchList.getAlertLow());
-		assertEquals(200.00, watchList.getAlertHigh());
+		assertNotNull(coinWatch);
+		assertEquals(125, coinWatch.getAlertLow());
+		assertEquals(200, coinWatch.getAlertHigh());
+		assertEquals(125.00, coinWatch.getAlertLow());
+		assertEquals(200.00, coinWatch.getAlertHigh());
 
 	}
 	@Test
 	@DisplayName("Testing coin watch list get coin name ")
 	void test3() {
-		assertNotNull(watchList);
-		assertEquals("ETH", watchList.getCoinName());
+		assertNotNull(coinWatch);
+		assertEquals("ETH", coinWatch.getCoinName());
 		
 	}
 	
 	@Test
 	@DisplayName("Testing coin watch list get trading pair")
 	void test4() {
-		assertNotNull(watchList);
-		assertEquals("ETH/USD", watchList.getTradingPair());
+		assertNotNull(coinWatch);
+		assertEquals("ETH/USD", coinWatch.getTradingPair());
 		
 	}
 	@Test
 	@DisplayName("Testing coin watch list get user get first name")
 	void test5() {
-		assertNotNull(watchList);
-		assertEquals("Richard", watchList.getUser().getFirstName());
+		assertNotNull(coinWatch);
+		assertEquals("Richard", coinWatch.getUser().getFirstName());
 		
 	}
 	

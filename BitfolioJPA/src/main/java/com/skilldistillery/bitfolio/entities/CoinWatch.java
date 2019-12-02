@@ -13,15 +13,15 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name="coin_watch_list")
-public class CoinWatchList {
+@Table(name="coin_watch")
+public class CoinWatch {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(name="watch_list_name")
-	private String watchListName;
+	@Column(name="coin_watch_name")
+	private String coinWatchName;
 	
 	@JsonIgnore
 	@ManyToOne(cascade = { CascadeType.PERSIST})
@@ -49,16 +49,12 @@ public class CoinWatchList {
 		return id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public String getCoinWatchName() {
+		return coinWatchName;
 	}
 
-	public String getWatchListName() {
-		return watchListName;
-	}
-
-	public void setWatchListName(String watchListName) {
-		this.watchListName = watchListName;
+	public void setCoinWatchName(String coinWatchName) {
+		this.coinWatchName = coinWatchName;
 	}
 
 	public UserProfile getUser() {
@@ -101,7 +97,7 @@ public class CoinWatchList {
 		this.exchange = exchange;
 	}
 
-	public double getAlertLow() {
+	public Double getAlertLow() {
 		return alertLow;
 	}
 
@@ -109,7 +105,7 @@ public class CoinWatchList {
 		this.alertLow = alertLow;
 	}
 
-	public double getAlertHigh() {
+	public Double getAlertHigh() {
 		return alertHigh;
 	}
 
@@ -117,11 +113,15 @@ public class CoinWatchList {
 		this.alertHigh = alertHigh;
 	}
 
-	public CoinWatchList(int id, String watchListName, UserProfile user, String logo, String coinName,
-			String tradingPair, String exchange, Double alertLow, Double alertHigh) {
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public CoinWatch(int id, String coinWatchName, UserProfile user, String logo, String coinName, String tradingPair,
+			String exchange, Double alertLow, Double alertHigh) {
 		super();
 		this.id = id;
-		this.watchListName = watchListName;
+		this.coinWatchName = coinWatchName;
 		this.user = user;
 		this.logo = logo;
 		this.coinName = coinName;
@@ -131,17 +131,17 @@ public class CoinWatchList {
 		this.alertHigh = alertHigh;
 	}
 
-	public CoinWatchList() {
+	public CoinWatch() {
 		super();
 	}
 
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("CoinWatchList [id=");
+		builder.append("CoinWatch [id=");
 		builder.append(id);
-		builder.append(", watchListName=");
-		builder.append(watchListName);
+		builder.append(", coinWatchName=");
+		builder.append(coinWatchName);
 		builder.append(", user=");
 		builder.append(user);
 		builder.append(", logo=");
@@ -167,12 +167,12 @@ public class CoinWatchList {
 		result = prime * result + ((alertHigh == null) ? 0 : alertHigh.hashCode());
 		result = prime * result + ((alertLow == null) ? 0 : alertLow.hashCode());
 		result = prime * result + ((coinName == null) ? 0 : coinName.hashCode());
+		result = prime * result + ((coinWatchName == null) ? 0 : coinWatchName.hashCode());
 		result = prime * result + ((exchange == null) ? 0 : exchange.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((logo == null) ? 0 : logo.hashCode());
 		result = prime * result + ((tradingPair == null) ? 0 : tradingPair.hashCode());
 		result = prime * result + ((user == null) ? 0 : user.hashCode());
-		result = prime * result + ((watchListName == null) ? 0 : watchListName.hashCode());
 		return result;
 	}
 
@@ -184,7 +184,7 @@ public class CoinWatchList {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		CoinWatchList other = (CoinWatchList) obj;
+		CoinWatch other = (CoinWatch) obj;
 		if (alertHigh == null) {
 			if (other.alertHigh != null)
 				return false;
@@ -199,6 +199,11 @@ public class CoinWatchList {
 			if (other.coinName != null)
 				return false;
 		} else if (!coinName.equals(other.coinName))
+			return false;
+		if (coinWatchName == null) {
+			if (other.coinWatchName != null)
+				return false;
+		} else if (!coinWatchName.equals(other.coinWatchName))
 			return false;
 		if (exchange == null) {
 			if (other.exchange != null)
@@ -222,16 +227,8 @@ public class CoinWatchList {
 				return false;
 		} else if (!user.equals(other.user))
 			return false;
-		if (watchListName == null) {
-			if (other.watchListName != null)
-				return false;
-		} else if (!watchListName.equals(other.watchListName))
-			return false;
 		return true;
 	}
-	
-	
-	
 	
 	
 

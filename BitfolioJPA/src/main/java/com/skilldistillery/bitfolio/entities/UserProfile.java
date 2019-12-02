@@ -40,7 +40,7 @@ public class UserProfile {
 	private List<Portfolio> portfolios;
 	
 	@OneToMany(mappedBy="user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-	private List<CoinWatchList> watchLists;
+	private List<CoinWatch> watchLists;
 
 	public int getId() {
 		return id;
@@ -114,17 +114,17 @@ public class UserProfile {
 		this.portfolios = portfolios;
 	}
 
-	public List<CoinWatchList> getWatchLists() {
+	public List<CoinWatch> getWatchLists() {
 		return watchLists;
 	}
 
-	public void setWatchLists(List<CoinWatchList> watchLists) {
+	public void setWatchLists(List<CoinWatch> watchLists) {
 		this.watchLists = watchLists;
 	}
 
 
 	public UserProfile(int id, String firstName, String lastName, String city, String state, String photoURL,
-			String bio, String images, List<Portfolio> portfolios, List<CoinWatchList> watchLists) {
+			String bio, String images, List<Portfolio> portfolios, List<CoinWatch> watchLists) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
