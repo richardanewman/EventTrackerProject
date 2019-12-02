@@ -25,10 +25,12 @@ public class PortfolioServiceImpl implements PortfolioService {
 	@Autowired
 	CoinRepository coinRepo;
 	
+	@Override
 	public List<Portfolio> getAllPortfolios() {
 		return portRepo.findAll();
 	}
 	
+	@Override
 	public Portfolio getPortfolioById(int id) {
 		Portfolio port = null;
 		Optional<Portfolio> opt = portRepo.findById(id);
@@ -38,6 +40,7 @@ public class PortfolioServiceImpl implements PortfolioService {
 		return port;
 	}
 	
+	@Override
 	public List<Portfolio> getAllPortfoliosByUserId(int id){
 		return userRepo.findById(id).get().getPortfolios();
 	
