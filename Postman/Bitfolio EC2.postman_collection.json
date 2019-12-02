@@ -1,0 +1,910 @@
+{
+	"info": {
+		"_postman_id": "86771df2-2c64-4111-839b-103973965d85",
+		"name": "Bitfolio EC2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Admin Get ALL User Accounts in DB",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://3.132.5.31:8080/Bitfolio/api/admin/users",
+					"protocol": "http",
+					"host": [
+						"3",
+						"132",
+						"5",
+						"31"
+					],
+					"port": "8080",
+					"path": [
+						"Bitfolio",
+						"api",
+						"admin",
+						"users"
+					]
+				},
+				"description": "http://localhost:8091/api/admin/users"
+			},
+			"response": []
+		},
+		{
+			"name": "Get User Accounts by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://3.132.5.31:8080/Bitfolio/api/user/1",
+					"protocol": "http",
+					"host": [
+						"3",
+						"132",
+						"5",
+						"31"
+					],
+					"port": "8080",
+					"path": [
+						"Bitfolio",
+						"api",
+						"user",
+						"1"
+					]
+				},
+				"description": "http://localhost:8091/api/user/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Create User",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user\": {\n        \"firstName\": \"Satoshi\",\n        \"lastName\": \"Nakamoto\",\n        \"city\": \"Denver\",\n        \"state\": \"Colorado\",\n        \"photoURL\": null,\n        \"bio\": \"The root problem with conventional currency is all the trust that's required to make it work. The central bank must be trusted not to debase the currency, but the history of fiat currencies is full of breaches of that trust. Banks must be trusted to hold our money and transfer it electronically, but they lend it out in waves of credit bubbles with barely a fraction in reserve. We have to trust them with our privacy, trust them not to let identity thieves drain our accoun.\",\n        \"images\": null\n    },\n    \"username\": \"satoshi\",\n    \"email\": \"sn@bitcoin.com\",\n    \"password\": \"123\",\n    \"salt\": null,\n    \"hashAlgo\": null,\n    \"passToken\": null,\n    \"passExpire\": null,\n    \"emailToken\": null,\n    \"active\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://3.132.5.31:8080/Bitfolio/api/user",
+					"protocol": "http",
+					"host": [
+						"3",
+						"132",
+						"5",
+						"31"
+					],
+					"port": "8080",
+					"path": [
+						"Bitfolio",
+						"api",
+						"user"
+					]
+				},
+				"description": "http://localhost:8091/api/user"
+			},
+			"response": []
+		},
+		{
+			"name": "Update User Account",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\n    \"email\": \"satoshi@bitcoin.com\",\n    \"password\": \"1234\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://3.132.5.31:8080/Bitfolio/api/user/3",
+					"protocol": "http",
+					"host": [
+						"3",
+						"132",
+						"5",
+						"31"
+					],
+					"port": "8080",
+					"path": [
+						"Bitfolio",
+						"api",
+						"user",
+						"3"
+					]
+				},
+				"description": "Only email and password can be updated.\n\n\n\n\nhttp://localhost:8091/api/user/3\n\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Deactivate User Account",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://3.132.5.31:8080/Bitfolio/api/user/deactivate/3",
+					"protocol": "http",
+					"host": [
+						"3",
+						"132",
+						"5",
+						"31"
+					],
+					"port": "8080",
+					"path": [
+						"Bitfolio",
+						"api",
+						"user",
+						"deactivate",
+						"3"
+					]
+				},
+				"description": "http://localhost:8091/api/user/deactivate/3"
+			},
+			"response": []
+		},
+		{
+			"name": "Reactivate User Account",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://3.132.5.31:8080/Bitfolio/api/user/reactivate/3",
+					"protocol": "http",
+					"host": [
+						"3",
+						"132",
+						"5",
+						"31"
+					],
+					"port": "8080",
+					"path": [
+						"Bitfolio",
+						"api",
+						"user",
+						"reactivate",
+						"3"
+					]
+				},
+				"description": "http://localhost:8091/api/user/reactivate/3"
+			},
+			"response": []
+		},
+		{
+			"name": "Admin Delete User ",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://3.132.5.31:8080/Bitfolio/api//admin/delete/3",
+					"protocol": "http",
+					"host": [
+						"3",
+						"132",
+						"5",
+						"31"
+					],
+					"port": "8080",
+					"path": [
+						"Bitfolio",
+						"api",
+						"",
+						"admin",
+						"delete",
+						"3"
+					]
+				},
+				"description": "http://localhost:8091/api//admin/deleteUser/3"
+			},
+			"response": []
+		},
+		{
+			"name": "Admin Get All User Profiles in DB",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://3.132.5.31:8080/Bitfolio/api/admin/user/profiles",
+					"protocol": "http",
+					"host": [
+						"3",
+						"132",
+						"5",
+						"31"
+					],
+					"port": "8080",
+					"path": [
+						"Bitfolio",
+						"api",
+						"admin",
+						"user",
+						"profiles"
+					]
+				},
+				"description": "http://localhost:8091/api/admin/profiles"
+			},
+			"response": []
+		},
+		{
+			"name": "Get User Profile by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://3.132.5.31:8080/Bitfolio/api/user/profile/1",
+					"protocol": "http",
+					"host": [
+						"3",
+						"132",
+						"5",
+						"31"
+					],
+					"port": "8080",
+					"path": [
+						"Bitfolio",
+						"api",
+						"user",
+						"profile",
+						"1"
+					]
+				},
+				"description": "http://localhost:8091/api/user/profile/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Update User Profile",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"id\": 1,\n        \"firstName\": \"Richard\",\n        \"lastName\": \"Newman\",\n        \"city\": \"Denver\",\n        \"state\": \"Colorado\",\n        \"photoURL\": null,\n        \"bio\": \"Life, liberty, and crypto!\",\n        \"images\": null\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://3.132.5.31:8080/Bitfolio/api/user/profile/1",
+					"protocol": "http",
+					"host": [
+						"3",
+						"132",
+						"5",
+						"31"
+					],
+					"port": "8080",
+					"path": [
+						"Bitfolio",
+						"api",
+						"user",
+						"profile",
+						"1"
+					]
+				},
+				"description": "http://localhost:8091/api/user/profile/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Admin Get All Portfolios in DB",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://3.132.5.31:8080/Bitfolio/api/admin/portfolios",
+					"protocol": "http",
+					"host": [
+						"3",
+						"132",
+						"5",
+						"31"
+					],
+					"port": "8080",
+					"path": [
+						"Bitfolio",
+						"api",
+						"admin",
+						"portfolios"
+					]
+				},
+				"description": "http://localhost:8091/api/admin/portfolios"
+			},
+			"response": []
+		},
+		{
+			"name": "Admin Get Portfolio By ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://3.132.5.31:8080/Bitfolio/api/admin/portfolio/1",
+					"protocol": "http",
+					"host": [
+						"3",
+						"132",
+						"5",
+						"31"
+					],
+					"port": "8080",
+					"path": [
+						"Bitfolio",
+						"api",
+						"admin",
+						"portfolio",
+						"1"
+					]
+				},
+				"description": "http://localhost:8091/api/admin/portfolio/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Portfolios by User Profile ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://3.132.5.31:8080/Bitfolio/api/user/1/portfolios",
+					"protocol": "http",
+					"host": [
+						"3",
+						"132",
+						"5",
+						"31"
+					],
+					"port": "8080",
+					"path": [
+						"Bitfolio",
+						"api",
+						"user",
+						"1",
+						"portfolios"
+					]
+				},
+				"description": "http://localhost:8091/api/user/1/portfolios"
+			},
+			"response": []
+		},
+		{
+			"name": "User Create New Portfolio",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"portfolioName\": \"New Portfolio\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://3.132.5.31:8080/Bitfolio/api/user/1/portfolio",
+					"protocol": "http",
+					"host": [
+						"3",
+						"132",
+						"5",
+						"31"
+					],
+					"port": "8080",
+					"path": [
+						"Bitfolio",
+						"api",
+						"user",
+						"1",
+						"portfolio"
+					]
+				},
+				"description": "http://localhost:8091/api/user/1/portfolio"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Portfolio Name",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\n        \"portfolioName\": \"Primary Bitfolio\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://3.132.5.31:8080/Bitfolio/api/user/1/portfolio",
+					"protocol": "http",
+					"host": [
+						"3",
+						"132",
+						"5",
+						"31"
+					],
+					"port": "8080",
+					"path": [
+						"Bitfolio",
+						"api",
+						"user",
+						"1",
+						"portfolio"
+					]
+				},
+				"description": "http://localhost:8091/api/user/1/portfolio"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Portfolio",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://3.132.5.31:8080/Bitfolio/api/user/1/portfolio/1",
+					"protocol": "http",
+					"host": [
+						"3",
+						"132",
+						"5",
+						"31"
+					],
+					"port": "8080",
+					"path": [
+						"Bitfolio",
+						"api",
+						"user",
+						"1",
+						"portfolio",
+						"1"
+					]
+				},
+				"description": "http://localhost:8091/api/user/portfolio/3"
+			},
+			"response": []
+		},
+		{
+			"name": "Admin Get All Coins in DB",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://3.132.5.31:8080/Bitfolio/api/admin/coins",
+					"protocol": "http",
+					"host": [
+						"3",
+						"132",
+						"5",
+						"31"
+					],
+					"port": "8080",
+					"path": [
+						"Bitfolio",
+						"api",
+						"admin",
+						"coins"
+					]
+				},
+				"description": "http://localhost:8091/api/admin/coins"
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Coins By Portfolio ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://3.132.5.31:8080/Bitfolio/api/portfolio/1/coins",
+					"protocol": "http",
+					"host": [
+						"3",
+						"132",
+						"5",
+						"31"
+					],
+					"port": "8080",
+					"path": [
+						"Bitfolio",
+						"api",
+						"portfolio",
+						"1",
+						"coins"
+					]
+				},
+				"description": "http://localhost:8091/api/portfolio/2/coins"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Coin By Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://3.132.5.31:8080/Bitfolio/api/portfolio/1/coin/1",
+					"protocol": "http",
+					"host": [
+						"3",
+						"132",
+						"5",
+						"31"
+					],
+					"port": "8080",
+					"path": [
+						"Bitfolio",
+						"api",
+						"portfolio",
+						"1",
+						"coin",
+						"1"
+					]
+				},
+				"description": "http://localhost:8091/api/coin/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Create New Coin",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"logo\": null,\n    \"name\": \"QTUM\",\n    \"tradingPair\": \"QTUM/USD\",\n    \"exchange\": \"Kraken\",\n    \"purchaseDate\": \"2019-12-01\",\n    \"purchaseTime\": \"09:54:00\",\n    \"buyPrice\": 1.78,\n    \"amountPurchased\": 500,\n    \"exchangeFee\": 0.0012,\n    \"notes\": \"Hold till conference date\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://3.132.5.31:8080/Bitfolio/api/portfolio/1/coin",
+					"protocol": "http",
+					"host": [
+						"3",
+						"132",
+						"5",
+						"31"
+					],
+					"port": "8080",
+					"path": [
+						"Bitfolio",
+						"api",
+						"portfolio",
+						"1",
+						"coin"
+					]
+				},
+				"description": "http://localhost:8091/api/portfolio/1/coin"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Coin",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"logo\": null,\n        \"name\": \"Test Two\",\n        \"tradingPair\": \"QTUM/USD\",\n        \"exchange\": \"Kraken\",\n        \"purchaseDate\": \"2019-12-01\",\n        \"purchaseTime\": \"09:54:00\",\n        \"buyPrice\": 1.78,\n        \"amountPurchased\": 500.0,\n        \"exchangeFee\": 0.0012,\n        \"notes\": \"Hold till conference date\"\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://3.132.5.31:8080/Bitfolio/api/portfolio/1/coin/1",
+					"protocol": "http",
+					"host": [
+						"3",
+						"132",
+						"5",
+						"31"
+					],
+					"port": "8080",
+					"path": [
+						"Bitfolio",
+						"api",
+						"portfolio",
+						"1",
+						"coin",
+						"1"
+					]
+				},
+				"description": "http://localhost:8091/api/portfolio/1/coin"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Coin",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://3.132.5.31:8080/Bitfolio/api/portfolio/1/coin/1",
+					"protocol": "http",
+					"host": [
+						"3",
+						"132",
+						"5",
+						"31"
+					],
+					"port": "8080",
+					"path": [
+						"Bitfolio",
+						"api",
+						"portfolio",
+						"1",
+						"coin",
+						"1"
+					]
+				},
+				"description": "http://localhost:8091/api/coin/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Admin Get All Watches",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://3.132.5.31:8080/Bitfolio/api/admin/watches",
+					"protocol": "http",
+					"host": [
+						"3",
+						"132",
+						"5",
+						"31"
+					],
+					"port": "8080",
+					"path": [
+						"Bitfolio",
+						"api",
+						"admin",
+						"watches"
+					]
+				},
+				"description": "http://localhost:8091/api/admin/watches"
+			},
+			"response": []
+		},
+		{
+			"name": "Admin Get Watch by Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://3.132.5.31:8080/Bitfolio/api//admin/watch/1",
+					"protocol": "http",
+					"host": [
+						"3",
+						"132",
+						"5",
+						"31"
+					],
+					"port": "8080",
+					"path": [
+						"Bitfolio",
+						"api",
+						"",
+						"admin",
+						"watch",
+						"1"
+					]
+				},
+				"description": "http://localhost:8091/api//admin/watch/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Watches by User Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://3.132.5.31:8080/Bitfolio/api/user/1/watches",
+					"protocol": "http",
+					"host": [
+						"3",
+						"132",
+						"5",
+						"31"
+					],
+					"port": "8080",
+					"path": [
+						"Bitfolio",
+						"api",
+						"user",
+						"1",
+						"watches"
+					]
+				},
+				"description": "http://localhost:8091/api/user/1/watches"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Coin Watch",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"coinWatchName\": \"Watch This\",\n        \"logo\": null,\n        \"coinName\": \"BTC\",\n        \"tradingPair\": \"BTC/USD\",\n        \"exchange\": \"Coinbase\",\n        \"alertLow\": 7725,\n        \"alertHigh\": 7750\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://3.132.5.31:8080/Bitfolio/api/user/1/watch",
+					"protocol": "http",
+					"host": [
+						"3",
+						"132",
+						"5",
+						"31"
+					],
+					"port": "8080",
+					"path": [
+						"Bitfolio",
+						"api",
+						"user",
+						"1",
+						"watch"
+					]
+				},
+				"description": "http://localhost:8091/api/user/1/watch"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Coin Watch",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"coinWatchName\": \"Another Setup\",\n    \"logo\": null,\n    \"coinName\": \"BTC\",\n    \"tradingPair\": \"BTC/USD\",\n    \"exchange\": \"Coinbase\",\n    \"alertLow\": 7725.0,\n    \"alertHigh\": 7750.0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://3.132.5.31:8080/Bitfolio/api/user/1/watch/3",
+					"protocol": "http",
+					"host": [
+						"3",
+						"132",
+						"5",
+						"31"
+					],
+					"port": "8080",
+					"path": [
+						"Bitfolio",
+						"api",
+						"user",
+						"1",
+						"watch",
+						"3"
+					]
+				},
+				"description": "http://localhost:8091/api/user/1/watch"
+			},
+			"response": []
+		},
+		{
+			"name": "Deletes Coin Watch",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://3.132.5.31:8080/Bitfolio/api/user/1/watch/1",
+					"protocol": "http",
+					"host": [
+						"3",
+						"132",
+						"5",
+						"31"
+					],
+					"port": "8080",
+					"path": [
+						"Bitfolio",
+						"api",
+						"user",
+						"1",
+						"watch",
+						"1"
+					]
+				},
+				"description": "http://localhost:8091/api/user/1/watch/3"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
