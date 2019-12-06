@@ -23,7 +23,7 @@ public class UserProfileController {
 	UserProfileService svc;
 	
 	@GetMapping("admin/user/profiles")
-	public List<UserProfile> getAllUserAccounts() {
+	public List<UserProfile> getAllUserProfiles() {
 		return svc.getAllUserProfiles();
 	}
 	
