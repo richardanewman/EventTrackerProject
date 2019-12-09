@@ -25,8 +25,6 @@ public class UserAccountController {
 	@Autowired
 	UserAccountService svc;
 	
-	
-	
 	@GetMapping("admin/users")
 	public List<UserAccount> getAllUserAccounts() {
 		return svc.getAllUserAccounts();
@@ -38,6 +36,12 @@ public class UserAccountController {
 		return userAccount;
 	}
 	
+	@GetMapping("user/email/{email}")
+	public UserAccount getUserAccountByEmail(@PathVariable String email) {
+		UserAccount userAccount = svc.getUserAccountByEmail(email);
+		return userAccount;
+	}
+	
 	@PostMapping("user")
 	public UserAccount createUser(@RequestBody UserAccount userAccount, 
 			HttpServletRequest req,
@@ -46,7 +50,7 @@ public class UserAccountController {
 			userAccount = svc.createUser(userAccount);
 			resp.setStatus(201);
 			StringBuffer url = req.getRequestURL();
-			url.append("/").append(userAccount.getId());
+			url.append("/").append(userAccount.getEmail());
 			resp.addHeader("Location", url.toString());
 			return userAccount;
 		} catch (Exception e) {

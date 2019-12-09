@@ -45,7 +45,7 @@ class CoinWatchTest {
 	@DisplayName("Testing coin watch list get name")
 	void test1() {
 		assertNotNull(coinWatch);
-		assertEquals("Wish List", coinWatch.getCoinWatchName());
+		assertEquals("Possible Channel Forming", coinWatch.getCoinWatchName());
 		
 	}
 	@Test

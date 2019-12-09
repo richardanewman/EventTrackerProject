@@ -43,10 +43,17 @@ class UserAccountTest {
 
 	@Test
 	@DisplayName("Testing user account user name and id")
+	void test() {
+		assertNotNull(UA);
+		assertEquals(1, UA.getId());
+	
+	}
+	@Test
+	@DisplayName("Testing user account user name and id")
 	void test1() {
 		assertNotNull(UA);
 		assertEquals("rick", UA.getUsername());
-		assertEquals(1, UA.getId());
+		assertEquals("rick@richardnewman.dev", UA.getEmail());
 	}
 	@Test
 	@DisplayName("Testing user account get pass")
