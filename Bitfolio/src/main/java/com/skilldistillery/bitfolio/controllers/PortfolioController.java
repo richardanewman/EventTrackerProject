@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.bitfolio.entities.Portfolio;
+import com.skilldistillery.bitfolio.entities.UserProfile;
 import com.skilldistillery.bitfolio.services.PortfolioService;
 import com.skilldistillery.bitfolio.services.UserProfileService;
 
@@ -72,15 +73,15 @@ public class PortfolioController {
 		//******************************************//
 	
 	@PutMapping("user/{id}/portfolio")
-	public Portfolio updatePortfolio(@PathVariable int id, 
+	public UserProfile updatePortfolio(@PathVariable int id, 
 			@RequestBody Portfolio portfolio, 
 			HttpServletRequest req,
 			HttpServletResponse resp) {
 		try {
-			portfolio = svc.updatePortfolio(id, portfolio);
+			UserProfile user = svc.updatePortfolio(id, portfolio);
 		
 			resp.setStatus(200);
-			return portfolio;
+			return user;
 			
 		
 		

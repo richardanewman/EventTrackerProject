@@ -41,8 +41,8 @@ DROP TABLE IF EXISTS `user_account` ;
 CREATE TABLE IF NOT EXISTS `user_account` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `user_profile_id` INT NOT NULL,
-  `username` VARCHAR(100) NOT NULL,
   `email` VARCHAR(254) NOT NULL,
+  `username` VARCHAR(100) NOT NULL,
   `password` VARCHAR(200) NOT NULL,
   `password_salt` VARCHAR(64) NULL,
   `password_hash_algorithm` VARCHAR(64) NULL,
@@ -51,9 +51,9 @@ CREATE TABLE IF NOT EXISTS `user_account` (
   `email_confirmation_token` VARCHAR(100) NULL,
   `registration_time` TIMESTAMP NULL,
   `active` TINYINT NOT NULL DEFAULT 1,
-  PRIMARY KEY (`id`, `user_profile_id`),
-  INDEX `fk_user_account_user_profile_idx` (`user_profile_id` ASC),
-  CONSTRAINT `fk_user_account_user_profile`
+  INDEX `fk_user_account_user_profile1_idx` (`user_profile_id` ASC),
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_user_account_user_profile1`
     FOREIGN KEY (`user_profile_id`)
     REFERENCES `user_profile` (`id`)
     ON DELETE NO ACTION
@@ -159,8 +159,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `portfoliodb`;
-INSERT INTO `user_account` (`id`, `user_profile_id`, `username`, `email`, `password`, `password_salt`, `password_hash_algorithm`, `password_reminder_token`, `password_reminder_expire`, `email_confirmation_token`, `registration_time`, `active`) VALUES (1, 1, 'rick', 'rick@richardnewman.dev', '123', NULL, NULL, NULL, NULL, NULL, '2019-11-29 14:49:00', 1);
-INSERT INTO `user_account` (`id`, `user_profile_id`, `username`, `email`, `password`, `password_salt`, `password_hash_algorithm`, `password_reminder_token`, `password_reminder_expire`, `email_confirmation_token`, `registration_time`, `active`) VALUES (2, 2, 'lauren', 'lauren@gmail.com', '123', NULL, NULL, NULL, NULL, NULL, '2019-11-29 16:21:00', 1);
+INSERT INTO `user_account` (`id`, `user_profile_id`, `email`, `username`, `password`, `password_salt`, `password_hash_algorithm`, `password_reminder_token`, `password_reminder_expire`, `email_confirmation_token`, `registration_time`, `active`) VALUES (DEFAULT, 1, 'rick@richardnewman.dev', 'rick', '123', NULL, NULL, NULL, NULL, NULL, '2019-11-29 14:49:00', 1);
+INSERT INTO `user_account` (`id`, `user_profile_id`, `email`, `username`, `password`, `password_salt`, `password_hash_algorithm`, `password_reminder_token`, `password_reminder_expire`, `email_confirmation_token`, `registration_time`, `active`) VALUES (DEFAULT, 2, 'lauren@gmail.com', 'lauren', '123', NULL, NULL, NULL, NULL, NULL, '2019-11-29 16:21:00', 1);
 
 COMMIT;
 

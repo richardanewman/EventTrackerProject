@@ -21,6 +21,7 @@ public class UserAccount {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+
 	
 	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	@JoinColumn(name= "user_profile_id")
@@ -148,14 +149,15 @@ public class UserAccount {
 		this.active = active;
 	}
 
-	public UserAccount(int id, UserProfile user, String username, String email, String password, String salt,
+
+	public UserAccount(int id, String email, UserProfile user, String username, String password, String salt,
 			String hashAlgo, String passToken, String passExpire, String emailToken, String registrationTime,
 			boolean active) {
 		super();
 		this.id = id;
+		this.email = email;
 		this.user = user;
 		this.username = username;
-		this.email = email;
 		this.password = password;
 		this.salt = salt;
 		this.hashAlgo = hashAlgo;
@@ -260,12 +262,12 @@ public class UserAccount {
 		StringBuilder builder = new StringBuilder();
 		builder.append("UserAccount [id=");
 		builder.append(id);
+		builder.append(", email=");
+		builder.append(email);
 		builder.append(", user=");
 		builder.append(user);
 		builder.append(", username=");
 		builder.append(username);
-		builder.append(", email=");
-		builder.append(email);
 		builder.append(", password=");
 		builder.append(password);
 		builder.append(", salt=");

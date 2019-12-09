@@ -30,6 +30,15 @@ public class UserAccountServiceImpl implements UserAccountService {
 		}
 		return userAccount;
 	}
+	@Override
+	public UserAccount getUserAccountByEmail(String email) {
+		UserAccount userAccount = null;
+		Optional<UserAccount> opt = acctRepo.findById(email);
+		if (opt.isPresent()) {
+			userAccount = opt.get();
+		}
+		return userAccount;
+	}
 
 	@Override
 	public UserAccount createUser(UserAccount userAccount) {
@@ -87,4 +96,21 @@ public class UserAccountServiceImpl implements UserAccountService {
 		
 	}
 	
+	@Override
+	public boolean validateUser(UserAccount account) {
+		UserAccount check = null;
+		Optional<UserAccount> opt = acctRepo.findById(account.getEmail());
+		if (opt.isPresent()) {
+			check = opt.get();
+		}
+	
+		if(check.getPassword().equals(account.getPassword())) {
+			return true;
+		}else {
+			return false;
+		}
+		
+	}
 }
+	
+

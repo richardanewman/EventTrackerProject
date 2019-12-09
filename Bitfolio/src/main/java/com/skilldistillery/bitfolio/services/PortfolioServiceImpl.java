@@ -60,7 +60,7 @@ public class PortfolioServiceImpl implements PortfolioService {
 	
 	
 	@Override
-	public Portfolio updatePortfolio(int id, Portfolio portfolio) {
+	public UserProfile updatePortfolio(int id, Portfolio portfolio) {
 		Portfolio port = null;
 		Optional<Portfolio> opt = portRepo.findById(id);
 		if (opt.isPresent()) {
@@ -70,8 +70,9 @@ public class PortfolioServiceImpl implements PortfolioService {
 			port.setPortfolioName(portfolio.getPortfolioName());
 			portRepo.saveAndFlush(port);
 			
+			UserProfile user = port.getUser();
 		
-		return port;
+		return user;
 	}
 			
 		
