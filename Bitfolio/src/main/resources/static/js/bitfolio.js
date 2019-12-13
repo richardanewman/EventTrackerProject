@@ -58,8 +58,8 @@ function profileInit(user) {
 		
 		let coinForms = document.getElementsByName("coinEditForm");
 		if(coinForms){
-			for (let i=0; i<coinForms.length; i++){
-				coinForms[i+1].textContent = '';
+			for (let j=0; j<coinForms.length; j++){
+				coinForms[j+1].textContent = '';
 				e.preventDefault();
 			}
 		}
@@ -77,11 +77,10 @@ function profileInit(user) {
 		
 		portNames[i].addEventListener('click', function(e) {
 			e.preventDefault();
-			
 			let forms = document.getElementsByName('editForm');
 			if(forms){
-				for (let i=0; i<forms.length; i++){
-					forms[i+1].textContent = '';
+				for (let j=0; j<forms.length; j++){
+					forms[j+1].textContent = '';
 					e.preventDefault();
 				
 				}
