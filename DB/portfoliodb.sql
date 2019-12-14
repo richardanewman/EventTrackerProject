@@ -44,12 +44,7 @@ CREATE TABLE IF NOT EXISTS `user_account` (
   `email` VARCHAR(254) NOT NULL,
   `username` VARCHAR(100) NOT NULL,
   `password` VARCHAR(200) NOT NULL,
-  `password_salt` VARCHAR(64) NULL,
-  `password_hash_algorithm` VARCHAR(64) NULL,
-  `password_reminder_token` VARCHAR(100) NULL,
-  `password_reminder_expire` TIMESTAMP NULL,
-  `email_confirmation_token` VARCHAR(100) NULL,
-  `registration_time` TIMESTAMP NULL,
+  `registration_time` TIMESTAMP NOT NULL,
   `active` TINYINT NOT NULL DEFAULT 1,
   INDEX `fk_user_account_user_profile1_idx` (`user_profile_id` ASC),
   PRIMARY KEY (`id`),
@@ -159,8 +154,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `portfoliodb`;
-INSERT INTO `user_account` (`id`, `user_profile_id`, `email`, `username`, `password`, `password_salt`, `password_hash_algorithm`, `password_reminder_token`, `password_reminder_expire`, `email_confirmation_token`, `registration_time`, `active`) VALUES (DEFAULT, 1, 'rick@richardnewman.dev', 'rick', '123', NULL, NULL, NULL, NULL, NULL, '2019-11-29 14:49:00', 1);
-INSERT INTO `user_account` (`id`, `user_profile_id`, `email`, `username`, `password`, `password_salt`, `password_hash_algorithm`, `password_reminder_token`, `password_reminder_expire`, `email_confirmation_token`, `registration_time`, `active`) VALUES (DEFAULT, 2, 'lauren@gmail.com', 'lauren', '123', NULL, NULL, NULL, NULL, NULL, '2019-11-29 16:21:00', 1);
+INSERT INTO `user_account` (`id`, `user_profile_id`, `email`, `username`, `password`, `registration_time`, `active`) VALUES (1, 1, 'rick@richardnewman.dev', 'rick', '123', '2019-11-29 14:49:00', 1);
+INSERT INTO `user_account` (`id`, `user_profile_id`, `email`, `username`, `password`, `registration_time`, `active`) VALUES (2, 2, 'lauren@gmail.com', 'lauren', '123', '2019-11-29 16:21:00', 1);
 
 COMMIT;
 

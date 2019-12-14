@@ -33,21 +33,6 @@ public class UserAccount {
 
 	private String password;
 	
-	@Column(name="password_salt")
-	private String salt;
-	
-	@Column(name="password_hash_algorithm")
-	private String hashAlgo;
-	
-	@Column(name="password_reminder_token")
-	private String passToken;
-	
-	@Column(name="password_reminder_expire")
-	private String passExpire;
-	
-	@Column(name="email_confirmation_token")
-	private String emailToken;
-	
 	@Column(name="registration_time")
 	private String registrationTime;
 	
@@ -93,46 +78,6 @@ public class UserAccount {
 		this.password = password;
 	}
 
-	public String getSalt() {
-		return salt;
-	}
-
-	public void setSalt(String salt) {
-		this.salt = salt;
-	}
-
-	public String getHashAlgo() {
-		return hashAlgo;
-	}
-
-	public void setHashAlgo(String hashAlgo) {
-		this.hashAlgo = hashAlgo;
-	}
-
-	public String getPassToken() {
-		return passToken;
-	}
-
-	public void setPassToken(String passToken) {
-		this.passToken = passToken;
-	}
-
-	public String getPassExpire() {
-		return passExpire;
-	}
-
-	public void setPassExpire(String passExpire) {
-		this.passExpire = passExpire;
-	}
-
-	public String getEmailToken() {
-		return emailToken;
-	}
-
-	public void setEmailToken(String emailToken) {
-		this.emailToken = emailToken;
-	}
-
 	public String getRegistrationTime() {
 		return registrationTime;
 	}
@@ -149,21 +94,14 @@ public class UserAccount {
 		this.active = active;
 	}
 
-
-	public UserAccount(int id, String email, UserProfile user, String username, String password, String salt,
-			String hashAlgo, String passToken, String passExpire, String emailToken, String registrationTime,
-			boolean active) {
+	public UserAccount(int id, UserProfile user, String username, String email, String password,
+			String registrationTime, boolean active) {
 		super();
 		this.id = id;
-		this.email = email;
 		this.user = user;
 		this.username = username;
+		this.email = email;
 		this.password = password;
-		this.salt = salt;
-		this.hashAlgo = hashAlgo;
-		this.passToken = passToken;
-		this.passExpire = passExpire;
-		this.emailToken = emailToken;
 		this.registrationTime = registrationTime;
 		this.active = active;
 	}
@@ -178,14 +116,9 @@ public class UserAccount {
 		int result = 1;
 		result = prime * result + (active ? 1231 : 1237);
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + ((emailToken == null) ? 0 : emailToken.hashCode());
-		result = prime * result + ((hashAlgo == null) ? 0 : hashAlgo.hashCode());
 		result = prime * result + id;
-		result = prime * result + ((passExpire == null) ? 0 : passExpire.hashCode());
-		result = prime * result + ((passToken == null) ? 0 : passToken.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((registrationTime == null) ? 0 : registrationTime.hashCode());
-		result = prime * result + ((salt == null) ? 0 : salt.hashCode());
 		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
@@ -207,27 +140,7 @@ public class UserAccount {
 				return false;
 		} else if (!email.equals(other.email))
 			return false;
-		if (emailToken == null) {
-			if (other.emailToken != null)
-				return false;
-		} else if (!emailToken.equals(other.emailToken))
-			return false;
-		if (hashAlgo == null) {
-			if (other.hashAlgo != null)
-				return false;
-		} else if (!hashAlgo.equals(other.hashAlgo))
-			return false;
 		if (id != other.id)
-			return false;
-		if (passExpire == null) {
-			if (other.passExpire != null)
-				return false;
-		} else if (!passExpire.equals(other.passExpire))
-			return false;
-		if (passToken == null) {
-			if (other.passToken != null)
-				return false;
-		} else if (!passToken.equals(other.passToken))
 			return false;
 		if (password == null) {
 			if (other.password != null)
@@ -238,11 +151,6 @@ public class UserAccount {
 			if (other.registrationTime != null)
 				return false;
 		} else if (!registrationTime.equals(other.registrationTime))
-			return false;
-		if (salt == null) {
-			if (other.salt != null)
-				return false;
-		} else if (!salt.equals(other.salt))
 			return false;
 		if (user == null) {
 			if (other.user != null)
@@ -262,24 +170,14 @@ public class UserAccount {
 		StringBuilder builder = new StringBuilder();
 		builder.append("UserAccount [id=");
 		builder.append(id);
-		builder.append(", email=");
-		builder.append(email);
 		builder.append(", user=");
 		builder.append(user);
 		builder.append(", username=");
 		builder.append(username);
+		builder.append(", email=");
+		builder.append(email);
 		builder.append(", password=");
 		builder.append(password);
-		builder.append(", salt=");
-		builder.append(salt);
-		builder.append(", hashAlgo=");
-		builder.append(hashAlgo);
-		builder.append(", passToken=");
-		builder.append(passToken);
-		builder.append(", passExpire=");
-		builder.append(passExpire);
-		builder.append(", emailToken=");
-		builder.append(emailToken);
 		builder.append(", registrationTime=");
 		builder.append(registrationTime);
 		builder.append(", active=");
