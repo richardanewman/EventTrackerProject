@@ -1,1 +1,54 @@
 <h1>bitfolio account</h1>
+<div>
+<table>
+<thead>
+  <tr>
+    <th>
+      Account
+    </th>
+  </tr>
+</thead>
+<tbody>
+  <tr *ngFor="let account of accounts">
+    <td>
+      {{account.id}}
+    </td>
+    <td>
+      {{account.email}}
+    </td>
+    <td>
+      {{account.username}}
+    </td>
+  </tr>
+</tbody>
+</table>
+</div>
+
+<div *ngIf="acct">
+  {{acct.email}}
+</div>
+<div (click)="acct && !editAccount" *ngIf="acct">
+  {{ acct.id }}
+  {{ acct.username }}
+  {{ acct.email }}
+  <button class="btn btn-primary" (click)="disableTable()">Back</button>
+  <button (click)="setEditAccount()">Edit</button>
+  <button (click)="deleteAccount(acct.id)" class="btn-danger" (click)="disableTable()">Delete Account</button>
+
+</div>
+
+
+<div *ngIf="editAccount">
+<h2>{{editAccount.id}}</h2>
+<form>
+  <label for="description">Email: </label>
+  <input type="text" name="email" [(ngModel)]="editAccount.email"><br>
+  <label for="account">Password: </label>
+  <input type="text" name="password" [(ngModel)]="editAccount.password"><br>
+  <button (click)="updateAccount(editAccount)">Save</button>
+  <button (click)="editAccount = null">Cancel</button>
+</form>
+
+
+
+</div>
