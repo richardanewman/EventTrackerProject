@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,7 @@ import com.skilldistillery.bitfolio.services.UserAccountService;
 
 @RestController
 @RequestMapping("api")
+@CrossOrigin({ "*", "http://localhost:4209" })
 public class AuthController {
 	
 	//Simple login controller - definitely not secure////////
