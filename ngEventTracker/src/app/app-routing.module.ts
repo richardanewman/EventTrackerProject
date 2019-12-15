@@ -14,6 +14,7 @@ const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'home'},
   {path: 'about', component: AboutComponent},
   {path: 'account', component: AccountComponent},
+  {path: 'account/:id', component: AccountComponent},
   {path: 'bitfolio', component: BitfolioComponent},
   {path: 'contact', component: ContactComponent},
   {path: 'home', component: HomeComponent},

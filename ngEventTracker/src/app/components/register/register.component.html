@@ -1,1 +1,11 @@
 <h1>bitfolio register</h1>
+
+<form>
+  <input type="text" name="firstName" class="form-control" placeholder="Enter Your First Name" [(ngModel)]="newAccount.firstName">
+  <input type="text" name="lastName" class="form-control" placeholder="Enter Your Last Name" [(ngModel)]="newAccount.lastName">
+  <input type="text" name="email" class="form-control" placeholder="Enter Your Email" [(ngModel)]="newAccount.email">
+  <input type="text" name="username" class="form-control" placeholder="Enter A Username" [(ngModel)]="newAccount.username">
+  <input type="text" name="password" class="form-control" placeholder="Enter A Passoword" [(ngModel)]="newAccount.password">
+  <button class="btn btn-primary" type="submit" value="New User" (click)="register(newAccount)">Submit</button>
+</form>
+
