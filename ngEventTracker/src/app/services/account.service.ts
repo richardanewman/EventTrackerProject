@@ -1,3 +1,4 @@
+import { Profile } from 'src/app/models/profile';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs';
@@ -38,8 +39,6 @@ export class AccountService {
         'X-Requested-With': 'XMLHttpRequest'
       })
     };
-    console.log('in showAccount()');
-    console.log(id);
     return this.http.get<Account>(this.url + '/' + id, httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
@@ -47,7 +46,7 @@ export class AccountService {
       })
     );
   }
-  create(acct: Account) {
+  create(acct: Account, prof: Profile) {
     const httpOptions = {
       headers: new HttpHeaders({
         'X-Requested-With': 'XMLHttpRequest',
@@ -56,8 +55,8 @@ export class AccountService {
     };
     const newUserObj = {
       user: {
-        firstName: acct.firstName,
-        lastName: acct.lastName
+        firstName: prof.firstName,
+        lastName: prof.lastName
       },
       username: acct.username,
       email: acct.email,
@@ -78,8 +77,6 @@ export class AccountService {
         'Content-type': 'application/json'
       })
     };
-    console.log('in update acct svc');
-    console.log(account);
     return this.http.put(`${this.url}/${account.id}`, account, httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
@@ -88,7 +85,7 @@ export class AccountService {
     );
   }
 
-  destroy(id: number){
+  destroy(id: number) {
     const httpOptions = {
       headers: new HttpHeaders({
         'X-Requested-With': 'XMLHttpRequest'
