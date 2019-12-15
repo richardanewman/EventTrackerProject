@@ -18,24 +18,24 @@ import com.skilldistillery.bitfolio.services.UserProfileService;
 
 @RestController
 @RequestMapping("api")
-//@CrossOrigin({ "*", "http://localhost:4299" })
+@CrossOrigin({ "*", "http://localhost:4209" })
 public class UserProfileController {
 	
 	@Autowired
 	UserProfileService svc;
 	
-	@GetMapping("admin/user/profiles")
+	@GetMapping("profiles")
 	public List<UserProfile> getAllUserProfiles() {
 		return svc.getAllUserProfiles();
 	}
 	
-	@GetMapping("user/profile/{id}")
+	@GetMapping("profile/{id}")
 	public UserProfile getUserProfileById(@PathVariable int id) {
 		UserProfile userProfile = svc.getUserProfileById(id);
 		return userProfile;
 	}
 	
-	@PutMapping("user/profile/{id}")
+	@PutMapping("profile/{id}")
 	public UserProfile updateUserProfile(@PathVariable int id, @RequestBody UserProfile userProfile,
 			HttpServletResponse resp) {
 			

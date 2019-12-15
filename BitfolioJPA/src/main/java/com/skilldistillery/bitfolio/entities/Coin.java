@@ -2,7 +2,6 @@ package com.skilldistillery.bitfolio.entities;
 
 import java.sql.Time;
 import java.time.LocalDate;
-import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;

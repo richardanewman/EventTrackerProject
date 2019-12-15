@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="user_profile")
 public class UserProfile {
@@ -35,7 +37,7 @@ public class UserProfile {
 	private String bio;
 	
 	private String images;
-	
+	@JsonIgnore
 	@OneToMany(mappedBy="user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	private List<Portfolio> portfolios;
 	

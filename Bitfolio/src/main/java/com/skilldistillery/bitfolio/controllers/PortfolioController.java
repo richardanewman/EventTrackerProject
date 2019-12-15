@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +23,7 @@ import com.skilldistillery.bitfolio.services.UserProfileService;
 
 @RestController
 @RequestMapping("api")
+@CrossOrigin({ "*", "http://localhost:4209" })
 public class PortfolioController {
 	
 	@Autowired
@@ -31,24 +33,24 @@ public class PortfolioController {
 	UserProfileService userSvc;
 	
 	
-	@GetMapping("admin/portfolios")
+	@GetMapping("portfolios")
 	public List<Portfolio> getAllPortfolios() {
 		return svc.getAllPortfolios();
 	}
 	
-	@GetMapping("admin/portfolio/{id}")
+	@GetMapping("portfolio/{id}")
 	public Portfolio getPortfolioById(@PathVariable int id) {
 		Portfolio port = svc.getPortfolioById(id);
 		return port;
 	}
 	
-	@GetMapping("user/{id}/portfolios")
+	@GetMapping("profile/{id}/portfolios")
 	public List<Portfolio> getAllPortfoliosByUserId(@PathVariable int id) {
 		return svc.getAllPortfoliosByUserId(id);
 	
 	}
 	
-	@PostMapping("user/{id}/portfolio")
+	@PostMapping("profile/{id}/portfolio")
 	public Portfolio createPortfolio(@PathVariable int id, 
 			@RequestBody Portfolio portfolio, 
 			HttpServletRequest req,
@@ -72,7 +74,7 @@ public class PortfolioController {
 		//Only allows user to update portfolio name //
 		//******************************************//
 	
-	@PutMapping("user/{id}/portfolio")
+	@PutMapping("profile/{id}/portfolio")
 	public UserProfile updatePortfolio(@PathVariable int id, 
 			@RequestBody Portfolio portfolio, 
 			HttpServletRequest req,
@@ -95,7 +97,7 @@ public class PortfolioController {
 		}
 	
 	
-	@DeleteMapping("user/{uid}/portfolio/{pid}")
+	@DeleteMapping("profile/{uid}/portfolio/{pid}")
 	public boolean deletePortfolio(@PathVariable int uid,
 			@PathVariable int pid,
 			HttpServletRequest req,
