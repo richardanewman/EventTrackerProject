@@ -1,22 +1,26 @@
 import { ProfileService } from 'src/app/services/profile.service';
 import { Component, OnInit } from '@angular/core';
 import { Profile } from 'src/app/models/profile';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { PortfolioService } from 'src/app/services/portfolio.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
-  selector: 'app-bitfolio',
-  templateUrl: './bitfolio.component.html',
-  styleUrls: ['./bitfolio.component.css']
+  selector: 'app-profile',
+  templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.css']
 })
-export class BitfolioComponent implements OnInit {
-
+export class ProfileComponent implements OnInit {
   profiles: Profile[] = [];
   pro: Profile = null;
   editProfile: Profile = null;
+  portProfile: Profile = null;
 
   constructor(
     private proSvc: ProfileService,
-    private currentRoute: ActivatedRoute
+    private currentRoute: ActivatedRoute,
+    private portSvc: PortfolioService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -38,7 +42,7 @@ export class BitfolioComponent implements OnInit {
         this.profiles = data;
       },
       error => {
-        console.log('BitfolioComponent.loadProfiles(): Error getting all profiles');
+        console.log('ProfileComponent.loadProfiles(): Error getting all profiles');
         console.log(error);
       }
     );
@@ -60,7 +64,7 @@ export class BitfolioComponent implements OnInit {
         this.pro = null;
       },
       error => {
-        console.error('BitfolioComponent: Error in updateProfile()');
+        console.error('ProfileComponent: Error in updateProfile()');
         console.error(error);
       }
     );

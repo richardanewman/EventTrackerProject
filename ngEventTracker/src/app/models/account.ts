@@ -2,7 +2,7 @@ import { Profile } from './profile';
 
 export class Account {
   id: number;
-  profile: Profile;
+  user: Profile;
   email: string;
   username: string;
   password: string;
@@ -10,14 +10,14 @@ export class Account {
 
   constructor(
     id?: number,
-    profile?: Profile,
+    user?: Profile,
     email?: string,
     username?: string,
     password?: string,
 
   ) {
     this.id = id;
-    this.profile = profile;
+    this.user = user;
     this.email = email;
     this.username = username;
     this.password = password;

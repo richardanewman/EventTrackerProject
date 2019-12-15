@@ -2,12 +2,13 @@ import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { ContactComponent } from './components/contact/contact.component';
-import { BitfolioComponent } from './components/bitfolio/bitfolio.component';
+import { PortfolioComponent } from './components/portfolio/portfolio.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AboutComponent } from './components/about/about.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AccountComponent } from './components/account/account.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 const routes: Routes = [
@@ -15,8 +16,10 @@ const routes: Routes = [
   {path: 'about', component: AboutComponent},
   {path: 'account', component: AccountComponent},
   {path: 'account/:id', component: AccountComponent},
-  {path: 'bitfolio', component: BitfolioComponent},
-  {path: 'bitfolio/:id', component: BitfolioComponent},
+  {path: 'profile', component: ProfileComponent},
+  {path: 'profile/:id', component: ProfileComponent},
+  {path: 'portfolio', component: PortfolioComponent},
+  {path: 'portfolio/:id', component: PortfolioComponent},
   {path: 'contact', component: ContactComponent},
   {path: 'home', component: HomeComponent},
   {path: 'login', component: LoginComponent},

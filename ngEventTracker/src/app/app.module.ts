@@ -9,13 +9,14 @@ import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { AccountComponent } from './components/account/account.component';
-import { BitfolioComponent } from './components/bitfolio/bitfolio.component';
+import { PortfolioComponent } from './components/portfolio/portfolio.component';
 import { LoginComponent } from './components/login/login.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { RegisterComponent } from './components/register/register.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -24,11 +25,12 @@ import { FormsModule } from '@angular/forms';
     AboutComponent,
     ContactComponent,
     AccountComponent,
-    BitfolioComponent,
+    PortfolioComponent,
     LoginComponent,
     NotFoundComponent,
     RegisterComponent,
-    NavBarComponent
+    NavBarComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
