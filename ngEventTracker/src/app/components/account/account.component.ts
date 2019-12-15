@@ -22,13 +22,8 @@ export class AccountComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log('in account ts init');
     this.loadAccounts();
-    console.log('after load accounts');
-    console.log(this.acct);
-    console.log(this.currentRoute.url);
     if (!this.acct && this.currentRoute.snapshot.paramMap.get('id')) {
-      console.log('in if onInit');
       return this.acctSvc
         .showAccount(this.currentRoute.snapshot.paramMap.get('id'))
         .subscribe(
@@ -62,11 +57,8 @@ export class AccountComponent implements OnInit {
     this.editAccount = Object.assign({}, this.acct);
   }
   updateAccount(account: Account) {
-    console.log('in updateAccount()');
-    console.log(account);
     this.acctSvc.update(account).subscribe(
       data => {
-        console.log('inside call to update in acctSvc');
         this.loadAccounts();
         this.editAccount = null;
         this.acct = null;

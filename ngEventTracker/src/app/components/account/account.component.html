@@ -41,9 +41,9 @@
 <div *ngIf="editAccount">
 <h2>{{editAccount.id}}</h2>
 <form>
-  <label for="description">Email: </label>
+  <label for="email">Email: </label>
   <input type="text" name="email" [(ngModel)]="editAccount.email"><br>
-  <label for="account">Password: </label>
+  <label for="password">Password: </label>
   <input type="text" name="password" [(ngModel)]="editAccount.password"><br>
   <button (click)="updateAccount(editAccount)">Save</button>
   <button (click)="editAccount = null">Cancel</button>

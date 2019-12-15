@@ -16,6 +16,7 @@ const routes: Routes = [
   {path: 'account', component: AccountComponent},
   {path: 'account/:id', component: AccountComponent},
   {path: 'bitfolio', component: BitfolioComponent},
+  {path: 'bitfolio/:id', component: BitfolioComponent},
   {path: 'contact', component: ContactComponent},
   {path: 'home', component: HomeComponent},
   {path: 'login', component: LoginComponent},

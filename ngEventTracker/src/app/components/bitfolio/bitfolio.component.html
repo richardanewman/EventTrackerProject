@@ -1,1 +1,65 @@
 <h1>bitfolio</h1>
+<div>
+  <table>
+  <thead>
+    <tr>
+      <th>
+       Profile
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let profile of profiles">
+      <td>
+        {{profile.picUrl}}
+      </td>
+      <td>
+        {{profile.id}}
+      </td>
+      <td>
+        {{profile.firstName}}
+      </td>
+      <td>
+        {{profile.lastName}}
+      </td>
+      <td>
+        {{profile.city}}
+      </td>
+      <td>
+        {{profile.state}}
+      </td>
+      <td>
+        {{profile.bio}}
+      </td>
+    </tr>
+  </tbody>
+  </table>
+  </div>
+  <div *ngIf="pro">
+    {{ pro.picUrl }}
+    {{ pro.id }}
+    {{ pro.firstName }}
+    {{ pro.lastName }}
+    <button class="btn btn-primary" (click)="disableTable()">Back</button>
+    <button (click)="setEditProfile()">Edit</button>
+  </div>
+  <div *ngIf="editProfile">
+    <h2>{{editProfile.id}}</h2>
+    <form>
+      <label for="pic">Picture URL: </label>
+      <input type="text" name="picUrl" [(ngModel)]="editProfile.picUrl"><br>
+      <label for="firstName">First Name: </label>
+      <input type="text" name="firstName" [(ngModel)]="editProfile.firstName"><br>
+      <label for="lastName">Last Name: </label>
+      <input type="text" name="lastName" [(ngModel)]="editProfile.lastName"><br>
+      <label for="city">City: </label>
+      <input type="text" name="city" [(ngModel)]="editProfile.city"><br>
+      <label for="state">State: </label>
+      <input type="text" name="state" [(ngModel)]="editProfile.state"><br>
+      <label for="bio">Bio: </label>
+      <input type="text" name="bio" [(ngModel)]="editProfile.bio"><br>
+      <button (click)="updateProfile(editProfile)">Save</button>
+      <button (click)="editProfile = null">Cancel</button>
+    </form>
+
+
