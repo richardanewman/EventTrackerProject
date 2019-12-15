@@ -4,7 +4,7 @@ export class Profile {
   lastName: string;
   city: string;
   state: string;
-  picUrl: string;
+  photoUrl: string;
   bio: string;
 
   constructor(
@@ -13,7 +13,7 @@ export class Profile {
     lastName?: string,
     city?: string,
     state?: string,
-    picUrl?: string,
+    photoUrl?: string,
     bio?: string
   ) {
     this.id = id;
@@ -21,7 +21,7 @@ export class Profile {
     this.lastName = lastName;
     this.city = city;
     this.state = state;
-    this.picUrl = picUrl;
+    this.photoUrl = photoUrl;
     this.bio = bio;
   }
 }

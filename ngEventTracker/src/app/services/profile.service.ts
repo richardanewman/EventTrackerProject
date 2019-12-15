@@ -31,7 +31,6 @@ export class ProfileService {
       })
     );
   }
-
   showProfile(id: string) {
     const httpOptions = {
       headers: new HttpHeaders({

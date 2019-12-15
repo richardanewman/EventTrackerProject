@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AccountService } from 'src/app/services/account.service';
 import { Account } from 'src/app/models/account';
+import { AccountService } from 'src/app/services/account.service';
 
 @Component({
   selector: 'app-account',
@@ -75,8 +75,8 @@ export class AccountComponent implements OnInit {
         this.loadAccounts();
       },
       failure => {
-        console.log('AccountComponent.deleteAccount(): Error deleting account');
-        console.log(failure);
+        console.error('AccountComponent.deleteAccount(): Error deleting account');
+        console.error(failure);
       }
     );
   }

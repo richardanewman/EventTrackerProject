@@ -1,4 +1,3 @@
-<h1>bitfolio</h1>
 <div>
   <table>
   <thead>
@@ -11,7 +10,7 @@
   <tbody>
     <tr *ngFor="let profile of profiles">
       <td>
-        {{profile.picUrl}}
+        {{profile.photoUrl}}
       </td>
       <td>
         {{profile.id}}
@@ -36,7 +35,7 @@
   </table>
   </div>
   <div *ngIf="pro">
-    {{ pro.picUrl }}
+    {{ pro.photoUrl }}
     {{ pro.id }}
     {{ pro.firstName }}
     {{ pro.lastName }}
@@ -47,7 +46,7 @@
     <h2>{{editProfile.id}}</h2>
     <form>
       <label for="pic">Picture URL: </label>
-      <input type="text" name="picUrl" [(ngModel)]="editProfile.picUrl"><br>
+      <input type="text" name="picUrl" [(ngModel)]="editProfile.photoUrl"><br>
       <label for="firstName">First Name: </label>
       <input type="text" name="firstName" [(ngModel)]="editProfile.firstName"><br>
       <label for="lastName">Last Name: </label>
@@ -61,5 +60,5 @@
       <button (click)="updateProfile(editProfile)">Save</button>
       <button (click)="editProfile = null">Cancel</button>
     </form>
-
+  </div>
 

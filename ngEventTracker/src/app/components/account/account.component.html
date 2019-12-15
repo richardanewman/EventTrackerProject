@@ -19,6 +19,12 @@
     <td>
       {{account.username}}
     </td>
+    <td>
+      {{account.user.firstName}}
+    </td>
+    <td>
+      {{account.user.lastName}}
+    </td>
   </tr>
 </tbody>
 </table>
@@ -48,7 +54,4 @@
   <button (click)="updateAccount(editAccount)">Save</button>
   <button (click)="editAccount = null">Cancel</button>
 </form>
-
-
-
 </div>

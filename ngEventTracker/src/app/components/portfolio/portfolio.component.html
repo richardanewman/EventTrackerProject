@@ -1,0 +1,48 @@
+<h1>bitfolio</h1>
+    <div *ngIf="!port">
+      <table>
+      <thead>
+        <tr>
+          <th>
+           Portfolio
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let portfolio of portfolios">
+          <td>
+            {{portfolio.id}}
+          </td>
+          <td>
+            {{portfolio.portfolioName}}
+          </td>
+        </tr>
+      </tbody>
+      </table>
+      </div>
+      <div *ngIf="port">
+        {{ port.portfolioName }}
+        <button class="btn btn-primary" (click)="disableTable()">Back</button>
+        <button (click)="setEditPortfolio()">Edit</button>
+        <button (click)="showCreateForm()">Create New Portfolio</button>
+      </div>
+
+      <div *ngIf="editPort">
+        <h2>{{editPort.id}}</h2>
+        <form>
+          <label for="portfolioName">Portfolio Name: </label>
+          <input type="text" name="portfolioName" [(ngModel)]="editPort.portfolioName"><br>
+          <button (click)="updatePortfolio(editPort)">Save</button>
+          <button (click)="editPort = null">Cancel</button>
+          <button class="btn btn-danger" (click)="deletePortfolio(editPort.id)">Delete</button>
+        </form>
+      </div>
+      <div *ngIf="bool">
+        <form #createForm="ngForm">
+          <input type="text" name="name" class="form-control" placeholder="Enter New Portfolio Name" ngModel>
+          <button class="btn btn-primary" type="submit" value="New Portfolio" (click)="createPortfolio(createForm)">Submit</button>
+          <button class="btn btn-primary" type="submit" value="Cancel" (click)="showForm = false">Cancel</button>
+        </form>
+        </div>
+
+

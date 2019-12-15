@@ -28,7 +28,7 @@ export class AccountService {
     };
     return this.http.get<Account[]>(this.url + 's', httpOptions).pipe(
       catchError((err: any) => {
-        console.log(err);
+        console.error(err);
         return throwError('AccountService.index(): Error retrieving accounts');
       })
     );
@@ -41,7 +41,7 @@ export class AccountService {
     };
     return this.http.get<Account>(this.url + '/' + id, httpOptions).pipe(
       catchError((err: any) => {
-        console.log(err);
+        console.error(err);
         return throwError('AccountService.showAccount(): Error retrieving account by id');
       })
     );
@@ -64,7 +64,7 @@ export class AccountService {
     };
     return this.http.post<Account>(this.url, newUserObj, httpOptions).pipe(
       catchError((err: any) => {
-        console.log(err);
+        console.error(err);
         return throwError('AccountService.create(); Error creating new account');
       })
     );
@@ -79,7 +79,7 @@ export class AccountService {
     };
     return this.http.put(`${this.url}/${account.id}`, account, httpOptions).pipe(
       catchError((err: any) => {
-        console.log(err);
+        console.error(err);
         return throwError('AccountService.update(): Error updating user account');
       })
     );
@@ -93,7 +93,7 @@ export class AccountService {
     };
     return this.http.delete(`${this.url}/${id}`, httpOptions).pipe(
       catchError((err: any) => {
-        console.log(err);
+        console.error(err);
         return throwError('AccountService.destroy(): Error deleting account');
       })
     );
