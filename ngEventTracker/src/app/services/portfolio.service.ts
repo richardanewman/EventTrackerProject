@@ -1,9 +1,11 @@
+
 import { catchError } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Portfolio } from 'src/app/models/portfolio';
 import { throwError } from 'rxjs';
 import { NgForm } from '@angular/forms';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +14,9 @@ export class PortfolioService {
 
   portfolios: Portfolio[] = [];
 
-  baseUrl = 'http://localhost:8099/';
-  url = this.baseUrl + 'api/portfolio';
+  // baseUrl = 'http://localhost:8099/';
+  private url = environment.baseUrl + 'api/portfolio';
+  private baseUrl = environment.baseUrl;
 
   constructor(
     private http: HttpClient

@@ -23,27 +23,28 @@
 </div>
 <div *ngIf="port">
   {{ port.portfolioName }}
-  <div *ngFor="let coin of port.coins" (click)="updatePort = port.id">
+  <div>
     <table class="table table-striped table-hover">
       <thead class="thead thead-dark">
         <tr>
           <th>
-            Coin
+            ID
           </th>
           <th></th>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th></th>
+          <th>Name</th>
+          <th>Pair</th>
+          <th>Exchange</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Price</th>
+          <th>Amount</th>
+          <th>Fee</th>
+          <th>Notes</th>
+          <th>Total Cost</th>
         </tr>
       </thead>
     <tbody>
-      <tr (click)="selectedCoin = coin">
+      <tr *ngFor="let coin of port.coins" (click)="updatePort = port.id" (click)="selectedCoin = coin">
         <td>
           {{ coin.id }}
         </td>
@@ -76,6 +77,9 @@
         </td>
         <td>
           {{ coin.notes }}
+        </td>
+        <td>
+          {{coin.buyPrice * coin.amountPurchased}}
         </td>
       </tr>
     </tbody>
@@ -123,7 +127,7 @@
   <input class="form-control" type="text" name="amountPurchased" [(ngModel)]="newCoin.amountPurchased"><br>
   <label for="exchangeFee">Exchange Fee: </label>
   <input class="form-control" type="text" name="exchangeFee" [(ngModel)]="newCoin.exchangeFee"><br>
-  <label class="form-control" for="notes">Notes: </label>
+  <label for="notes">Notes: </label>
   <input class="form-control" type="text" name="notes" [(ngModel)]="newCoin.notes"><br>
   <button class="btn btn-success" (click)="createCoin(portId)">Add New Coin</button>
   <button class="btn btn-primary" (click)="portId = null">Cancel</button>

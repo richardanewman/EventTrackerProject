@@ -1,16 +1,19 @@
+
 import { catchError } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Coin } from 'src/app/models/coin';
 import { throwError } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CoinService {
 
-  baseUrl = 'http://localhost:8099/';
-  url = this.baseUrl + 'api/coin';
+  // baseUrl = 'http://localhost:8099/';
+  private url = environment.baseUrl + 'api/coin';
+  private baseUrl = environment.baseUrl;
 
   constructor(
     private http: HttpClient

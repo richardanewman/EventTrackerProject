@@ -1,9 +1,11 @@
+
 import { Profile } from 'src/app/models/profile';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Account } from 'src/app/models/account';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +15,9 @@ export class AccountService {
   accounts: Account[] = [];
 
 
-  baseUrl = 'http://localhost:8099/';
-  url = this.baseUrl + 'api/account';
+  // baseUrl = 'http://localhost:8099/';
+  private url = environment.baseUrl + 'api/account';
+  private baseUrl = environment.baseUrl;
 
   constructor(
     private http: HttpClient
