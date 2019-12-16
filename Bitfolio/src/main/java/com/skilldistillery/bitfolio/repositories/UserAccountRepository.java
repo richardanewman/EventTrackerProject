@@ -11,7 +11,7 @@ import com.skilldistillery.bitfolio.entities.UserAccount;
 public interface UserAccountRepository extends JpaRepository<UserAccount, Integer>{
 	
 	@Query("select u from UserAccount u where u.email = :email")
-	Optional<UserAccount> findById(@Param("email") String email);
+	Optional<UserAccount> findByEmail(@Param("email") String email);
 	
 	
 

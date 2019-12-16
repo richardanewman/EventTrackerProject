@@ -32,7 +32,7 @@ public class CoinController {
 	PortfolioService portSvc;
 	
 	
-	@GetMapping("admin/coins")
+	@GetMapping("coins")
 	public List<Coin> getAllCoins() {
 		return svc.getAllCoins();
 	}
@@ -114,7 +114,7 @@ public class CoinController {
 		boolean result = false;
 		if(portSvc.getPortfolioById(pid) != null) {
 			
-			result = svc.deleteCoin(pid);
+			result = svc.deleteCoin(cid);
 			
 			
 		}else {

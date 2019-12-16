@@ -88,7 +88,7 @@ CREATE TABLE IF NOT EXISTS `coin` (
   `trading_pair` VARCHAR(45) NULL,
   `exchange` VARCHAR(100) NULL,
   `purchase_date` DATE NULL,
-  `purchase_time` TIME NULL,
+  `purchase_time` TEXT NULL,
   `buy_price` DOUBLE NULL,
   `amount_purchased` DOUBLE NULL,
   `exchange_fee` DOUBLE NULL DEFAULT 0.00,
