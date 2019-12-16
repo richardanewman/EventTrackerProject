@@ -9,7 +9,6 @@ import { throwError } from 'rxjs';
 })
 export class ProfileService {
 
-  profiles: Profile[] = [];
 
   baseUrl = 'http://localhost:8099/';
   url = this.baseUrl + 'api/profile';
@@ -26,7 +25,7 @@ export class ProfileService {
     };
     return this.http.get<Profile[]>(this.url + 's', httpOptions).pipe(
       catchError((err: any) => {
-        console.log(err);
+        console.error(err);
         return throwError('ProfileService.index(): Error getting profile[]');
       })
     );
@@ -39,7 +38,7 @@ export class ProfileService {
     };
     return this.http.get<Profile>(this.url + '/' + id, httpOptions).pipe(
       catchError((err: any) => {
-        console.log(err);
+        console.error(err);
         return throwError('ProfileService.showProfile(): Error getting profile by id');
       })
     );

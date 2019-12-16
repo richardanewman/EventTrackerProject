@@ -1,9 +1,8 @@
-import { ProfileService } from 'src/app/services/profile.service';
 import { Component, OnInit } from '@angular/core';
-import { Profile } from 'src/app/models/profile';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Profile } from 'src/app/models/profile';
 import { PortfolioService } from 'src/app/services/portfolio.service';
-import { NgForm } from '@angular/forms';
+import { ProfileService } from 'src/app/services/profile.service';
 
 @Component({
   selector: 'app-profile',
@@ -12,7 +11,7 @@ import { NgForm } from '@angular/forms';
 })
 export class ProfileComponent implements OnInit {
   profiles: Profile[] = [];
-  pro: Profile = null;
+  selectedProfile: Profile = null;
   editProfile: Profile = null;
   portProfile: Profile = null;
 
@@ -25,12 +24,12 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.loadProfiles();
-    if (!this.pro && this.currentRoute.snapshot.paramMap.get('id')) {
+    if (!this.selectedProfile && this.currentRoute.snapshot.paramMap.get('id')) {
       return this.proSvc
         .showProfile(this.currentRoute.snapshot.paramMap.get('id'))
         .subscribe(
           data => {
-            this.pro = data;
+            this.selectedProfile = data;
           }
         );
     }
@@ -42,18 +41,18 @@ export class ProfileComponent implements OnInit {
         this.profiles = data;
       },
       error => {
-        console.log('ProfileComponent.loadProfiles(): Error getting all profiles');
-        console.log(error);
+        console.error('ProfileComponent.loadProfiles(): Error getting all profiles');
+        console.error(error);
       }
     );
   }
 
   disableTable() {
-    this.pro = null;
+    this.selectedProfile = null;
   }
 
   setEditProfile() {
-    this.editProfile = Object.assign({}, this.pro);
+    this.editProfile = Object.assign({}, this.selectedProfile);
   }
 
   updateProfile(profile: Profile) {
@@ -61,7 +60,7 @@ export class ProfileComponent implements OnInit {
       data => {
         this.loadProfiles();
         this.editProfile = null;
-        this.pro = null;
+        this.selectedProfile = null;
       },
       error => {
         console.error('ProfileComponent: Error in updateProfile()');

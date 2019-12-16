@@ -1,3 +1,6 @@
+import { CoinService } from './services/coin.service';
+import { ProfileService } from './services/profile.service';
+import { PortfolioService } from 'src/app/services/portfolio.service';
 import { AccountService } from './services/account.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserModule } from '@angular/platform-browser';
@@ -17,6 +20,7 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ProfileComponent } from './components/profile/profile.component';
+import { CoinComponent } from './components/coin/coin.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +34,8 @@ import { ProfileComponent } from './components/profile/profile.component';
     NotFoundComponent,
     RegisterComponent,
     NavBarComponent,
-    ProfileComponent
+    ProfileComponent,
+    CoinComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +45,10 @@ import { ProfileComponent } from './components/profile/profile.component';
     FormsModule
   ],
   providers: [
-    AccountService
+    AccountService,
+    PortfolioService,
+    ProfileService,
+    CoinService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,48 +1,140 @@
 <h1>bitfolio</h1>
-    <div *ngIf="!port">
-      <table>
-      <thead>
-        <tr>
-          <th>
-           Portfolio
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let portfolio of portfolios">
-          <td>
-            {{portfolio.id}}
-          </td>
-          <td>
-            {{portfolio.portfolioName}}
-          </td>
-        </tr>
-      </tbody>
-      </table>
-      </div>
-      <div *ngIf="port">
-        {{ port.portfolioName }}
-        <button class="btn btn-primary" (click)="disableTable()">Back</button>
-        <button (click)="setEditPortfolio()">Edit</button>
-        <button (click)="showCreateForm()">Create New Portfolio</button>
-      </div>
+<div *ngIf="!port">
+  <table>
+    <thead>
+      <tr>
+        <th>
+          Portfolio
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let portfolio of portfolios" (click)="port = portfolio">
+        <td>
+          {{ portfolio.id }}
+        </td>
+        <td>
+          {{ portfolio.portfolioName }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div *ngIf="port">
+  {{ port.portfolioName }}
+  <div *ngFor="let coin of port.coins" (click)="updatePort = port.id">
+    <tbody>
+      <tr (click)="selectedCoin = coin">
+        <td>
+          {{ coin.id }}
+        </td>
+        <td>
+          {{ coin.logo }}
+        </td>
+        <td>
+          {{ coin.name }}
+        </td>
+        <td>
+          {{ coin.tradingPair }}
+        </td>
+        <td>
+          {{ coin.exchange }}
+        </td>
+        <td>
+          {{ coin.purchaseDate }}
+        </td>
+        <td>
+          {{ coin.purchaseTime }}
+        </td>
+        <td>
+          {{ coin.buyPrice }}
+        </td>
+        <td>
+          {{ coin.amountPurchased }}
+        </td>
+        <td>
+          {{ coin.exchangeFee }}
+        </td>
+        <td>
+          {{ coin.notes }}
+        </td>
+      </tr>
+    </tbody>
+  </div>
+  <button class="btn btn-primary" (click)="port = null">Back</button>
+  <button class="btn btn-warning" (click)="editPort = port">Edit</button>
+  <button class="btn btn-success" (click)="new = true">Create New Portfolio</button>
+  <button class="btn btn-success" (click)="portId = port.id">Add New Coin</button>
+</div>
 
-      <div *ngIf="editPort">
-        <h2>{{editPort.id}}</h2>
-        <form>
-          <label for="portfolioName">Portfolio Name: </label>
-          <input type="text" name="portfolioName" [(ngModel)]="editPort.portfolioName"><br>
-          <button (click)="updatePortfolio(editPort)">Save</button>
-          <button (click)="editPort = null">Cancel</button>
-          <button class="btn btn-danger" (click)="deletePortfolio(editPort.id)">Delete</button>
-        </form>
-      </div>
-      <div *ngIf="bool">
-        <form #createForm="ngForm">
-          <input type="text" name="name" class="form-control" placeholder="Enter New Portfolio Name" ngModel>
-          <button class="btn btn-primary" type="submit" value="New Portfolio" (click)="createPortfolio(createForm)">Submit</button>
-          <button class="btn btn-primary" type="submit" value="Cancel" (click)="showForm = false">Cancel</button>
-        </form>
-        </div>
+<div *ngIf="editPort">
+  <h2>{{ editPort.id }}</h2>
+  <form>
+    <label for="portfolioName">Portfolio Name: </label>
+    <input type="text" name="portfolioName" [(ngModel)]="editPort.portfolioName"/><br/>
+    <button class="btn btn-success" (click)="updatePortfolio()">Save</button>
+    <button class="btn btn-primary" (click)="editPort = null">Cancel</button>
+    <button class="btn btn-danger" (click)="deletePortfolio()">Delete</button>
+  </form>
+</div>
+<div *ngIf="new">
+  <form #createForm="ngForm">
+    <input type="text" name="name" class="form-control" placeholder="Enter New Portfolio Name" ngModel/>
+    <button class="btn btn-primary" type="submit" value="New Portfolio" (click)="createPortfolio(port.user.id, createForm)">Submit</button>
+    <button class="btn btn-primary" type="submit" value="Cancel" (click)="new = false">Cancel</button>
+  </form>
+</div>
+
+<div *ngIf="portId" >
+  <form>
+  <label for="name">Coin Name: </label>
+  <input type="text" name="name" [(ngModel)]="newCoin.name"><br>
+  <label for="tradingPair">Trading Pair: </label>
+  <input type="text" name="tradingPair" [(ngModel)]="newCoin.tradingPair"><br>
+  <label for="exchange">Exchange: </label>
+  <input type="text" name="exchange" [(ngModel)]="newCoin.exchange"><br>
+  <label for="purchaseDate">Purchase Date: </label>
+  <input type="date" name="purchaseDate" [(ngModel)]="newCoin.purchaseDate"><br>
+  <label for="purchaseTime">Purchase Time: </label>
+  <input type="time" name="purchaseTime" [(ngModel)]="newCoin.purchaseTime"><br>
+  <label for="buyPrice">Purchase Price: </label>
+  <input type="text" name="buyPrice" [(ngModel)]="newCoin.buyPrice"><br>
+  <label for="amountPurchased">Amount Purchased: </label>
+  <input type="text" name="amountPurchased" [(ngModel)]="newCoin.amountPurchased"><br>
+  <label for="exchangeFee">Exchange Fee: </label>
+  <input type="text" name="exchangeFee" [(ngModel)]="newCoin.exchangeFee"><br>
+  <label for="notes">Notes: </label>
+  <input type="text" name="notes" [(ngModel)]="newCoin.notes"><br>
+  <button (click)="createCoin(portId)">Add New Coin</button>
+  <button (click)="portId = null">Back</button>
+</form>
+</div>
+
+<div *ngIf="selectedCoin">
+  <form>
+  <label for="name">Coin Name: </label>
+  <input type="text" name="name" [(ngModel)]="selectedCoin.name"><br>
+  <label for="tradingPair">Trading Pair: </label>
+  <input type="text" name="tradingPair" [(ngModel)]="selectedCoin.tradingPair"><br>
+  <label for="exchange">Exchange: </label>
+  <input type="text" name="exchange" [(ngModel)]="selectedCoin.exchange"><br>
+  <label for="purchaseDate">Purchase Date: </label>
+  <input type="date" name="purchaseDate" [(ngModel)]="selectedCoin.purchaseDate"><br>
+  <label for="purchaseTime">Purchase Time: </label>
+  <input type="time" name="purchaseTime" [(ngModel)]="selectedCoin.purchaseTime"><br>
+  <label for="buyPrice">Purchase Price: </label>
+  <input type="text" name="buyPrice" [(ngModel)]="selectedCoin.buyPrice"><br>
+  <label for="amountPurchased">Amount Purchased: </label>
+  <input type="text" name="amountPurchased" [(ngModel)]="selectedCoin.amountPurchased"><br>
+  <label for="exchangeFee">Exchange Fee: </label>
+  <input type="text" name="exchangeFee" [(ngModel)]="selectedCoin.exchangeFee"><br>
+  <label for="notes">Notes: </label>
+  <input type="text" name="notes" [(ngModel)]="selectedCoin.notes"><br>
+  <button (click)="updateCoin(updatePort)">Save</button>
+  <button (click)="selectedCoin = null">Back</button>
+  <button class="btn btn-danger" (click)="deleteCoin(updatePort)">Delete Coin</button>
+</form>
+</div>
+
 
 
