@@ -1,15 +1,19 @@
 <h1>bitfolio account</h1>
-<div>
-<table>
-<thead>
+<div *ngIf="!acct">
+  <table class="table table-striped table-hover">
+    <thead class="thead thead-dark">
   <tr>
     <th>
       Account
     </th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
   </tr>
 </thead>
 <tbody>
-  <tr *ngFor="let account of accounts">
+  <tr *ngFor="let account of accounts" (click)="acct = account">
     <td>
       {{account.id}}
     </td>
@@ -37,21 +41,21 @@
   {{ acct.id }}
   {{ acct.username }}
   {{ acct.email }}
+  <button class="btn btn-warning" (click)="editAccount = acct">Edit</button>
   <button class="btn btn-primary" (click)="disableTable()">Back</button>
-  <button (click)="setEditAccount()">Edit</button>
-  <button (click)="deleteAccount(acct.id)" class="btn-danger" (click)="disableTable()">Delete Account</button>
+  <button class="btn btn-danger" (click)="deleteAccount(acct.id)" (click)="disableTable()">Delete Account</button>
 
 </div>
 
 
 <div *ngIf="editAccount">
 <h2>{{editAccount.id}}</h2>
-<form>
+<form class="form-group">
   <label for="email">Email: </label>
-  <input type="text" name="email" [(ngModel)]="editAccount.email"><br>
+  <input class="form-control" type="text" name="email" [(ngModel)]="editAccount.email"><br>
   <label for="password">Password: </label>
-  <input type="text" name="password" [(ngModel)]="editAccount.password"><br>
-  <button (click)="updateAccount(editAccount)">Save</button>
-  <button (click)="editAccount = null">Cancel</button>
+  <input class="form-control" type="text" name="password" [(ngModel)]="editAccount.password"><br>
+  <button class="btn btn-success" (click)="updateAccount(editAccount)">Save</button>
+  <button class="btn btn-primary" (click)="editAccount = null">Cancel</button>
 </form>
 </div>

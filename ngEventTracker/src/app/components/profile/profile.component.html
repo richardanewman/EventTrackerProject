@@ -1,10 +1,16 @@
 <div *ngIf="!selectedProfile">
-  <table>
-  <thead>
+  <table class="table table-striped table-hover">
+    <thead class="thead thead-dark">
     <tr>
       <th>
        Profile
       </th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -40,25 +46,25 @@
     {{ selectedProfile.firstName }}
     {{ selectedProfile.lastName }}
     <button class="btn btn-primary" (click)="disableTable()">Back</button>
-    <button (click)="setEditProfile()">Edit</button>
+    <button class="btn btn-warning" (click)="setEditProfile()">Edit</button>
   </div>
   <div *ngIf="editProfile">
     <h2>{{editProfile.id}}</h2>
-    <form>
+    <form class="form-group">
       <label for="pic">Picture URL: </label>
-      <input type="text" name="picUrl" [(ngModel)]="editProfile.photoUrl"><br>
+      <input class="form-control" type="text" name="picUrl" [(ngModel)]="editProfile.photoUrl"><br>
       <label for="firstName">First Name: </label>
-      <input type="text" name="firstName" [(ngModel)]="editProfile.firstName"><br>
+      <input class="form-control" type="text" name="firstName" [(ngModel)]="editProfile.firstName"><br>
       <label for="lastName">Last Name: </label>
-      <input type="text" name="lastName" [(ngModel)]="editProfile.lastName"><br>
+      <input class="form-control" type="text" name="lastName" [(ngModel)]="editProfile.lastName"><br>
       <label for="city">City: </label>
-      <input type="text" name="city" [(ngModel)]="editProfile.city"><br>
+      <input class="form-control" type="text" name="city" [(ngModel)]="editProfile.city"><br>
       <label for="state">State: </label>
-      <input type="text" name="state" [(ngModel)]="editProfile.state"><br>
+      <input class="form-control" type="text" name="state" [(ngModel)]="editProfile.state"><br>
       <label for="bio">Bio: </label>
-      <input type="text" name="bio" [(ngModel)]="editProfile.bio"><br>
-      <button (click)="updateProfile(editProfile)">Save</button>
-      <button (click)="editProfile = null">Cancel</button>
+      <input class="form-control" type="text" name="bio" [(ngModel)]="editProfile.bio"><br>
+      <button class="btn btn-success" (click)="updateProfile(editProfile)">Save</button>
+      <button class="btn btn-primary" (click)="editProfile = null">Cancel</button>
     </form>
   </div>
 
