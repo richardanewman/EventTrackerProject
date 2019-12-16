@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="!selectedProfile">
   <table>
   <thead>
     <tr>
@@ -8,7 +8,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let profile of profiles">
+    <tr (click)="selectedProfile = profile" *ngFor="let profile of profiles">
       <td>
         {{profile.photoUrl}}
       </td>
@@ -34,11 +34,11 @@
   </tbody>
   </table>
   </div>
-  <div *ngIf="pro">
-    {{ pro.photoUrl }}
-    {{ pro.id }}
-    {{ pro.firstName }}
-    {{ pro.lastName }}
+  <div *ngIf="selectedProfile">
+    {{ selectedProfile.photoUrl }}
+    {{ selectedProfile.id }}
+    {{ selectedProfile.firstName }}
+    {{ selectedProfile.lastName }}
     <button class="btn btn-primary" (click)="disableTable()">Back</button>
     <button (click)="setEditProfile()">Edit</button>
   </div>

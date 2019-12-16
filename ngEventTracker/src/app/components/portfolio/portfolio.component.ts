@@ -1,9 +1,10 @@
+import { CoinService } from './../../services/coin.service';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Portfolio } from 'src/app/models/portfolio';
 import { PortfolioService } from 'src/app/services/portfolio.service';
-import { ProfileService } from 'src/app/services/profile.service';
+import { Coin } from 'src/app/models/coin';
 
 @Component({
   selector: 'app-portfolio',
@@ -13,15 +14,18 @@ import { ProfileService } from 'src/app/services/profile.service';
 export class PortfolioComponent implements OnInit {
   portfolios: Portfolio[] = [];
   port = null;
-  userID = null;
   editPort: Portfolio = null;
-  bool = false;
+  newCoin: Coin = new Coin();
+  selectedCoin = null;
+  portId = null;
+  updatePort = null;
+  new = false;
 
   constructor(
     private portSvc: PortfolioService,
     private currentRoute: ActivatedRoute,
     private router: Router,
-    private proSvc: ProfileService
+    private coinSvc: CoinService
   ) {}
 
   ngOnInit() {
@@ -33,8 +37,6 @@ export class PortfolioComponent implements OnInit {
         .subscribe(
           data => {
             this.port = data;
-            this.userID = this.port.user.id;
-            console.log(this.userID);
           },
           error => {
             console.error(error);
@@ -57,32 +59,23 @@ export class PortfolioComponent implements OnInit {
       }
     );
   }
-  createPortfolio(createForm: NgForm) {
-    this.portSvc.create(createForm, this.userID).subscribe(
+  createPortfolio(uid: number, createForm: NgForm) {
+    this.portSvc.create(uid, createForm).subscribe(
       data => {
-        this.router.navigateByUrl('/portfolio');
+        this.loadPortfolios();
+        this.editPort = null;
+        this.port = null;
+        this.new = false;
       },
       error => {
-        console.error(
-          'PortfolioComponent.createPortfolio(): Error creating new portfolio'
-        );
+        console.error('PortfolioComponent.createPortfolio(): Error creating new portfolio');
         console.error(error);
       }
     );
   }
-  showCreateForm() {
-    this.bool = true;
-  }
-  disableTable() {
-    this.port = null;
-  }
 
-  setEditPortfolio() {
-    this.editPort = Object.assign({}, this.port);
-  }
-
-  updatePortfolio(portfolio: Portfolio) {
-    this.portSvc.update(portfolio).subscribe(
+  updatePortfolio() {
+    this.portSvc.update(this.editPort).subscribe(
       data => {
         this.loadPortfolios();
         this.editPort = null;
@@ -94,11 +87,12 @@ export class PortfolioComponent implements OnInit {
       }
     );
   }
-  deletePortfolio(pid: number) {
-    this.portSvc.destroy(this.userID, pid).subscribe(
+  deletePortfolio() {
+    this.portSvc.destroy(this.editPort).subscribe(
       success => {
-        this.router.navigateByUrl('/portfolio');
         this.loadPortfolios();
+        this.editPort = null;
+        this.port = null;
       },
       failure => {
         console.error('PortfolioComponent.deletePortfolio(): Error deleting portfolio');
@@ -106,4 +100,81 @@ export class PortfolioComponent implements OnInit {
       }
     );
   }
+
+//////// Coins ///////////////////////////
+
+  createCoin(pid: number) {
+    this.coinSvc.create(pid, this.newCoin).subscribe(
+      data => {
+        return this.portSvc
+        .showPortfolio(this.currentRoute.snapshot.paramMap.get('id'))
+        .subscribe(
+          moreData => {
+            this.port = moreData;
+            this.editPort = null;
+            this.portId = null;
+          },
+          error => {
+            console.error(error);
+            this.router.navigateByUrl('not-found');
+          }
+        );
+      },
+      error => {
+        console.error('CoinComponent.createCoin(): Error creating coin');
+        console.error(error);
+      }
+    );
+  }
+  updateCoin(pid: number) {
+    this.coinSvc.update(pid, this.selectedCoin).subscribe(
+      data => {
+        return this.portSvc
+        .showPortfolio(pid + '')
+        .subscribe(
+          moreData => {
+            this.port = moreData;
+            this.selectedCoin = null;
+            this.editPort = null;
+            this.updatePort = null;
+            this.portId = null;
+          },
+          error => {
+            console.error(error);
+            this.router.navigateByUrl('not-found');
+          }
+        );
+      },
+      error => {
+        console.error('CoinComponent.createCoin(): Error creating coin');
+        console.error(error);
+      }
+    );
+  }
+  deleteCoin(pid: number) {
+    this.coinSvc.destroy(pid, this.selectedCoin.id).subscribe(
+      data => {
+        return this.portSvc
+        .showPortfolio(pid + '')
+        .subscribe(
+          moreData => {
+            this.port = moreData;
+            this.selectedCoin = null;
+            this.editPort = null;
+            this.updatePort = null;
+            this.portId = null;
+          },
+          error => {
+            console.error(error);
+            this.router.navigateByUrl('not-found');
+          }
+        );
+      },
+      error => {
+        console.error('PortfolioComponent.deleteCoin(): Error deleting coin');
+        console.error(error);
+      }
+    );
+  }
+
 }

@@ -9,6 +9,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AccountComponent } from './components/account/account.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { CoinComponent } from 'src/app/components/coin/coin.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,8 @@ const routes: Routes = [
   {path: 'about', component: AboutComponent},
   {path: 'account', component: AccountComponent},
   {path: 'account/:id', component: AccountComponent},
+  {path: 'coin', component: CoinComponent},
+  {path: 'coin/:id', component: CoinComponent},
   {path: 'profile', component: ProfileComponent},
   {path: 'profile/:id', component: ProfileComponent},
   {path: 'portfolio', component: PortfolioComponent},

@@ -46,7 +46,7 @@ export class PortfolioService {
     );
   }
 
-  create(createForm: NgForm, userID: number) {
+  create(userID: number, createForm: NgForm) {
     const newPortfolio = {
       portfolioName: createForm.value.name
     };
@@ -65,7 +65,6 @@ export class PortfolioService {
   }
 
   update(portfolio: Portfolio) {
-    console.log(portfolio);
     const httpOptions = {
       headers: new HttpHeaders({
         'X-Requested-With': 'XMLHttpRequest',
@@ -80,13 +79,13 @@ export class PortfolioService {
     );
   }
 
-  destroy(uid: number, pid: number) {
+  destroy(portfolio: Portfolio) {
     const httpOptions = {
       headers: new HttpHeaders({
         'X-Requested-With': 'XMLHttpRequest'
       })
     };
-    return this.http.delete(`${this.baseUrl}api/profile/${uid}/portfolio/${pid}`, httpOptions).pipe(
+    return this.http.delete(`${this.baseUrl}api/profile/${portfolio.user.id}/portfolio/${portfolio.id}`, httpOptions).pipe(
       catchError((err: any) => {
         console.error(err);
         return throwError('PortfolioService.destroy(): Error deleting portfolio by user id and portfolio id');
