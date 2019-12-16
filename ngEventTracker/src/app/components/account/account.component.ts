@@ -52,10 +52,6 @@ export class AccountComponent implements OnInit {
   disableTable() {
     this.acct = null;
   }
-
-  setEditAccount() {
-    this.editAccount = Object.assign({}, this.acct);
-  }
   updateAccount(account: Account) {
     this.acctSvc.update(account).subscribe(
       data => {
