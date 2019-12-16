@@ -107,7 +107,7 @@ export class PortfolioComponent implements OnInit {
     this.coinSvc.create(pid, this.newCoin).subscribe(
       data => {
         return this.portSvc
-        .showPortfolio(this.currentRoute.snapshot.paramMap.get('id'))
+        .showPortfolio(pid + '')
         .subscribe(
           moreData => {
             this.port = moreData;
