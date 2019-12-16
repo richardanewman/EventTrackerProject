@@ -1,6 +1,5 @@
 package com.skilldistillery.bitfolio.entities;
 
-import java.sql.Time;
 import java.time.LocalDate;
 
 import javax.persistence.CascadeType;
@@ -34,7 +33,7 @@ public class Coin {
 	private LocalDate purchaseDate;
 	
 	@Column(name="purchase_time")
-	private Time purchaseTime;
+	private String purchaseTime;
 	
 	@Column(name="buy_price")
 	private Double buyPrice;
@@ -100,11 +99,11 @@ public class Coin {
 		this.purchaseDate = purchaseDate;
 	}
 
-	public Time getPurchaseTime() {
+	public String getPurchaseTime() {
 		return purchaseTime;
 	}
 
-	public void setPurchaseTime(Time purchaseTime) {
+	public void setPurchaseTime(String purchaseTime) {
 		this.purchaseTime = purchaseTime;
 	}
 
@@ -151,7 +150,7 @@ public class Coin {
 	
 
 	public Coin(int id, String logo, String name, String exchange, String tradingPair, LocalDate purchaseDate,
-			Time purchaseTime, Double buyPrice, Double amountPurchased, Double exchangeFee, String notes,
+			String purchaseTime, Double buyPrice, Double amountPurchased, Double exchangeFee, String notes,
 			Portfolio portfolio) {
 		super();
 		this.id = id;

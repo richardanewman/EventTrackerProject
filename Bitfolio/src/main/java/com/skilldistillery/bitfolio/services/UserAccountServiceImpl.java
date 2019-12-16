@@ -33,7 +33,7 @@ public class UserAccountServiceImpl implements UserAccountService {
 	@Override
 	public UserAccount getUserAccountByEmail(String email) {
 		UserAccount userAccount = null;
-		Optional<UserAccount> opt = acctRepo.findById(email);
+		Optional<UserAccount> opt = acctRepo.findByEmail(email);
 		if (opt.isPresent()) {
 			userAccount = opt.get();
 		}
@@ -99,7 +99,7 @@ public class UserAccountServiceImpl implements UserAccountService {
 	@Override
 	public boolean validateUser(UserAccount account) {
 		UserAccount check = null;
-		Optional<UserAccount> opt = acctRepo.findById(account.getEmail());
+		Optional<UserAccount> opt = acctRepo.findByEmail(account.getEmail());
 		if (opt.isPresent()) {
 			check = opt.get();
 		}
