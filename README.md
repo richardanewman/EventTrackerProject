@@ -7,7 +7,7 @@
 This application is built using an API first design. There is no frontend at this point in time. Only routes were used to test this application. For the Event
 Tracker Project, I chose to build a cryptocurrency portfolio tracking application. This application allows a user to perform full CRUD on five tables: user_account, user_profile, portfolio, coin, and coin_watch. (see ER diagram below). Bitfolio allows user to persist data relating to their crytpocurrency portfolio and monitor possible trading opportunities. Future iterations of this project will implement a frontend, bring in real-time data from external API, perform calculations to display portfolio value, and deliver alerts based on persisted data in their coin_watch table.
 
-![EER Diagram](https://github.com/richardanewman/richardanewman.github.io/blob/master/images/postman.png)
+![Postman Screenshot](https://github.com/richardanewman/richardanewman.github.io/blob/master/images/postman.png)
 
 ### Technologies
 
